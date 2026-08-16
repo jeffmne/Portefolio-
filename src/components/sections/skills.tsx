@@ -20,9 +20,9 @@ export function Skills() {
             return (
               <li key={category.id}>
                 <Reveal className="h-full" delay={index * 70}>
-                  <Card className="group h-full transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md hover:shadow-primary/5">
+                  <Card className="group h-full transition-[transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-primary/40">
                     <CardHeader className="flex-row items-center gap-3 space-y-0">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-border bg-muted/60 text-primary transition-transform duration-300 group-hover:scale-105">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-border bg-muted/60 text-primary transition-colors duration-300 group-hover:border-primary/40">
                         <Icon className="h-5 w-5" aria-hidden="true" />
                       </span>
                       <CardTitle className="text-base">{category.title}</CardTitle>

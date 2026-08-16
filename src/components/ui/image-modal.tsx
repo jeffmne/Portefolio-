@@ -58,7 +58,7 @@ export function ImageModal({ images, className }: ImageModalProps) {
               type="button"
               onClick={() => setActiveIndex(index)}
               aria-label={`Agrandir l'image : ${image.caption}`}
-              className="group relative block w-full overflow-hidden rounded-md border border-border bg-muted/40 ring-offset-background transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="group relative block w-full overflow-hidden rounded-md border border-border bg-muted/40 ring-offset-background transition-[transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <span className="relative block aspect-[16/10]">
                 <Image

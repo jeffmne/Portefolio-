@@ -19,11 +19,11 @@ export function Experience() {
           {experiences.map((experience, index) => (
             <li key={experience.id}>
               <Reveal delay={index * 80}>
-                <Card className="group transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md hover:shadow-primary/5">
+                <Card className="group transition-[transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-primary/40">
                   <CardContent className="p-5 sm:p-6">
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
                       <div className="flex items-start gap-3">
-                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-border bg-muted/60 text-primary transition-transform duration-300 group-hover:scale-105">
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-border bg-muted/60 text-primary transition-colors duration-300 group-hover:border-primary/40">
                           <Briefcase className="h-5 w-5" aria-hidden="true" />
                         </span>
                         <div className="min-w-0">

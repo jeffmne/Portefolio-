@@ -53,10 +53,7 @@ export function Education() {
                 <li key={certification.id}>
                   <Reveal delay={index * 60}>
                     <div className="group flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-[transform,border-color,background-color] duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-muted/30">
-                      <Award
-                        className="mt-0.5 h-4 w-4 shrink-0 text-primary transition-transform duration-300 group-hover:scale-110"
-                        aria-hidden="true"
-                      />
+                      <Award className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
                       <div className="min-w-0">
                         <p className="text-sm font-medium text-foreground">{certification.title}</p>
                         <p className="mt-0.5 font-mono text-xs text-muted-foreground">
@@ -73,18 +70,14 @@ export function Education() {
 
         {/* Encadre "Pourquoi moi ?" */}
         <Reveal className="mt-12 sm:mt-14">
-          <Card className="relative overflow-hidden border-primary/30 bg-muted/30">
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary/10 blur-3xl"
-            />
-            <CardHeader className="relative flex-row items-center gap-3 space-y-0">
+          <Card className="border-primary/30 bg-muted/30">
+            <CardHeader className="flex-row items-center gap-3 space-y-0">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-primary/40 bg-background text-primary">
                 <Sparkles className="h-5 w-5" aria-hidden="true" />
               </span>
               <CardTitle className="text-lg sm:text-xl">Pourquoi moi ?</CardTitle>
             </CardHeader>
-            <CardContent className="relative">
+            <CardContent>
               <ul className="grid gap-6 md:grid-cols-2">
                 {valuePropositions.map((proposition, index) => (
                   <li key={proposition.id}>

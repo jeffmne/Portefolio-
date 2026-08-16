@@ -150,11 +150,12 @@ export const hero = {
     "J'accompagne les entreprises dans la sécurisation de leur infrastructure IT, l'automatisation de leurs processus et la création de solutions web sur mesure.",
   primaryCta: { label: 'Demander un devis', href: '#contact' },
   secondaryCta: { label: 'Télécharger mon CV', href: siteConfig.cvPath },
-  highlights: [
-    { id: 'infra', value: 'Infra', label: 'Réseaux, sécurité & virtualisation' },
-    { id: 'dev', value: 'Dev', label: 'Applications web métier sur mesure' },
-    { id: 'audit', value: 'Audit', label: 'Pentest & maintenance IT' },
-  ],
+  portrait: {
+    src: '/images/menie-milama-rod.webp',
+    alt: 'Portrait de MENIE MILAMA Rod, ingénieur systèmes, réseaux et sécurité',
+    width: 1000,
+    height: 1250,
+  },
 } as const;
 
 /* -------------------------------------------------------------------------- */
@@ -457,7 +458,6 @@ export const contactSection = {
   heading: 'Parlons de votre projet',
   paragraph:
     'Décrivez votre besoin en quelques lignes. Je réponds sous 24 heures ouvrées avec une première analyse et, le cas échéant, une proposition chiffrée.',
-  availability: 'Missions freelance, audits ponctuels et opportunités CDI — Gabon et remote.',
 } as const;
 
 /* -------------------------------------------------------------------------- */

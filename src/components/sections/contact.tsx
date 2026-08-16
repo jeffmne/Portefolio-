@@ -1,4 +1,4 @@
-import { CalendarClock, ExternalLink, Linkedin, Mail, Phone } from 'lucide-react';
+import { ExternalLink, Linkedin, Mail, Phone } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -53,7 +53,7 @@ export function Contact() {
                             : {})}
                           className="group flex items-center gap-3 rounded-md border border-border p-3 ring-offset-background transition-[transform,border-color,background-color] duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                         >
-                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-muted text-primary transition-transform duration-200 group-hover:scale-105">
+                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-muted text-primary">
                             <Icon className="h-4 w-4" aria-hidden="true" />
                           </span>
                           <span className="min-w-0">
@@ -75,21 +75,6 @@ export function Contact() {
                     );
                   })}
                 </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-primary/30 bg-muted/30">
-              <CardContent className="flex items-start gap-3 p-5">
-                <CalendarClock
-                  className="mt-0.5 h-5 w-5 shrink-0 text-primary"
-                  aria-hidden="true"
-                />
-                <div>
-                  <p className="text-sm font-semibold text-foreground">Disponibilité</p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    {contactSection.availability}
-                  </p>
-                </div>
               </CardContent>
             </Card>
           </Reveal>

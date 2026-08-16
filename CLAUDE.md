@@ -66,6 +66,7 @@ src/
 │   └── utils.ts            # Helpers (cn, etc.)
 └── public/
     ├── images/
+    │   ├── menie-milama-rod.webp  # Portrait du hero
     │   └── projects/       # Captures d'écran CMDB, lab réseau
     └── cv-menie-milama.pdf
 ```
@@ -90,7 +91,7 @@ Principe directeur : **l'animation souligne la structure, elle ne la décore pas
 | ------------------------ | ------------------------------------------------------------------------------------ |
 | Entrée du hero           | `animate-fade-in-up` en cascade, décalage de 90 ms par bloc (`STEP` dans `hero.tsx`) |
 | Apparition au défilement | `<Reveal>` — IntersectionObserver, déclenché une seule fois, `delay` pour la cascade |
-| Survol des cartes        | Élévation (`-translate-y-1`), bordure accent, ombre teintée, icône `scale-105`       |
+| Survol des cartes        | Élévation légère (`-translate-y-1`) et bordure accent — rien d'autre                 |
 | Header                   | Passe de 64 à 56 px au défilement, bordure et ombre révélées                         |
 | Liens de navigation      | Souligné `.link-underline` déployé depuis la gauche                                  |
 | Bascule de thème         | Rotation croisée Soleil / Lune via les variantes `dark:`                             |
@@ -156,7 +157,8 @@ Seule dérogation à la palette d'origine : `--destructive` en thème sombre est
 - **Paragraphe :** `J'accompagne les entreprises dans la sécurisation de leur infrastructure IT, l'automatisation de leurs processus et la création de solutions web sur mesure.`
 - **CTA primaire :** `Demander un devis` → scroll vers `#contact`
 - **CTA secondaire :** `Télécharger mon CV` → lien vers `/cv-menie-milama.pdf` (download)
-- Arrière-plan : grille technique (`.bg-grid-pattern`) masquée en dégradé radial, très basse opacité.
+- **Portrait** : `hero.portrait` dans `lib/data.ts`, en colonne de droite à partir de `lg`, sous le texte en dessous. `priority` car c'est l'élément LCP.
+- Arrière-plan : grille technique (`.bg-grid-pattern`) masquée en dégradé radial, très basse opacité. Pas d'autre décor : le hero doit rester lisible, pas décoré.
 
 ### 3. Services (id="services")
 
@@ -245,7 +247,7 @@ Formulaire côté gauche, coordonnées côté droit (layout 2 colonnes desktop, 
 - Message (textarea, requis)
 - Bouton : `Envoyer le message`
 
-**Coordonnées directes :**
+**Coordonnées directes** (le bloc « Disponibilité » a été retiré : il répétait l'accroche du hero) **:**
 
 - Email : `jeffmenie@icloud.com`
 - Téléphone : `+241 62 41 73 34`
@@ -308,3 +310,4 @@ npm run format     # Prettier
 4. Générer du code non typé ou avec `any`
 5. Ajouter des dépendances non listées dans la stack (pas de Framer Motion, AOS, etc.)
 6. Produire un design "template générique" — le site doit avoir une identité technique, sobre, B2B
+7. Empiler les effets décoratifs — voiles en dégradé, halos floutés, ombres colorées : **un seul accent visuel par élément, pas trois**. Le survol se limite à une élévation légère et une bordure accent.
