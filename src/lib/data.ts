@@ -390,6 +390,11 @@ export const timeline: TimelineEntry[] = [
 
 export const certifications: Certification[] = [
   { id: 'winserver', title: 'Administration Système — Windows Server 2019', issuer: 'Alphorm' },
+  {
+    id: 'md102',
+    title: 'Microsoft 365 Certified : Endpoint Administrator Associate (MD-102)',
+    issuer: 'Alphorm',
+  },
   { id: 'pentest', title: 'Méthodologies de Pentest & Audits de Sécurité', issuer: 'Alphorm' },
   { id: 'cyber', title: 'MOOC Cybersécurité', issuer: 'Cyberini' },
   { id: 'claude', title: 'Claude Code & Prompt Engineering', issuer: 'Alphorm' },

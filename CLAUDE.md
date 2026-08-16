@@ -224,6 +224,7 @@ Timeline verticale, chaque entrée = pastille accent + date + contenu.
 - **2022–2025 :** Diplôme d'Ingénieur Génie Informatique (Réseaux & Systèmes) — Université Africaine des Sciences
 - **Formations continues :**
   - Administration Système — Windows Server 2019 (Alphorm)
+  - Microsoft 365 Certified : Endpoint Administrator Associate (MD-102) (Alphorm)
   - Méthodologies de Pentest & Audits de Sécurité (Alphorm)
   - MOOC Cybersécurité (Cyberini)
   - Claude Code & Prompt Engineering (Alphorm)
