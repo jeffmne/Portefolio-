@@ -26,7 +26,9 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files
-.env
+# .env est versionne : il ne porte que la cle publique Web3Forms, deja
+# exposee dans le bundle client. Tout secret reel va dans .env*.local
+# (ignore ci-dessous) ou dans les variables d'environnement Vercel.
 .env*.local
 
 # vercel

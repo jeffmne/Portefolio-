@@ -254,7 +254,7 @@ Formulaire côté gauche, coordonnées côté droit (layout 2 colonnes desktop, 
 - Téléphone : `+241 62 41 73 34`
 - LinkedIn : `socialLinks.linkedin` dans `lib/data.ts` — **URL à confirmer**
 
-**Intégration formulaire :** requête POST vers Web3Forms, clé publique lue dans `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`. Message de succès / d'erreur affiché sous le bouton, annoncé aux lecteurs d'écran (`role="status"`). Champ honeypot `botcheck` contre les robots.
+**Intégration formulaire :** requête POST vers Web3Forms, clé publique lue dans `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`, définie dans `.env` — versionné, car le préfixe `NEXT_PUBLIC_` place de toute façon la clé dans le bundle client. `.env.local` et les variables Vercel priment sur `.env` ; **aucun secret réel ne doit être écrit dans `.env`**. Message de succès / d'erreur affiché sous le bouton, annoncé aux lecteurs d'écran (`role="status"`). Champ honeypot `botcheck` contre les robots.
 
 ### 9. Footer
 

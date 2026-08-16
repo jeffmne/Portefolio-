@@ -32,20 +32,23 @@ Autres commandes :
 
 Le formulaire poste directement vers [Web3Forms](https://web3forms.com) — aucun backend à maintenir.
 
-1. Créer une clé d'accès gratuite sur web3forms.com avec l'adresse `jeffmenie@icloud.com`.
-2. Copier `.env.example` vers `.env.local` et renseigner la clé :
+**Rien à configurer pour déployer :** la clé est déjà renseignée dans `.env`, versionné avec le dépôt. Vercel la lit au build, le formulaire fonctionne dès le premier déploiement.
 
-```bash
-cp .env.example .env.local
-```
+### Pourquoi la clé est-elle dans le dépôt ?
 
-```
-NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=votre-cle-publique
-```
+Son préfixe `NEXT_PUBLIC_` indique à Next.js de l'intégrer au JavaScript envoyé au navigateur : elle est donc **visible par n'importe quel visiteur du site**, versionnée ou non. Ce n'est pas un secret, et la garder hors du dépôt n'apporterait aucune protection.
 
-3. Sur Vercel, ajouter la même variable dans **Settings → Environment Variables**.
+La vraie protection se règle côté Web3Forms : dans le tableau de bord, **restreindre le domaine autorisé** au domaine du site. Sans cela, quelqu'un pourrait réutiliser la clé pour envoyer des messages vers la même boîte mail.
 
-Sans clé configurée, le formulaire reste affiché mais invite explicitement le visiteur à écrire à l'adresse email directe.
+### Changer la clé
+
+- **Partout** : modifier `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` dans `.env`.
+- **En local uniquement**, sans toucher au dépôt : créer un `.env.local` (ignoré par git) — il prime sur `.env`.
+- **En production uniquement** : déclarer la variable dans Vercel, **Settings → Environment Variables** — elle prime sur `.env`.
+
+> Ne jamais placer de véritable secret dans `.env` : ce fichier est public. Les secrets vont dans `.env.local` ou dans Vercel.
+
+Si la variable est vide, le formulaire reste affiché mais invite explicitement le visiteur à écrire à l'adresse email directe.
 
 ---
 
