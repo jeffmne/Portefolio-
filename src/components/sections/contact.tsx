@@ -3,6 +3,7 @@ import type { LucideIcon } from 'lucide-react';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ContactForm } from '@/components/ui/contact-form';
+import { Reveal } from '@/components/ui/reveal';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { contactChannels, contactSection } from '@/lib/data';
 
@@ -14,7 +15,7 @@ const CHANNEL_ICONS: Record<string, LucideIcon> = {
 
 export function Contact() {
   return (
-    <section id="contact" className="py-20 sm:py-24">
+    <section id="contact" className="py-16 sm:py-20 lg:py-24">
       <div className="container">
         <SectionHeading
           eyebrow="Contact"
@@ -22,17 +23,19 @@ export function Contact() {
           description={contactSection.paragraph}
         />
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
-          <Card>
-            <CardHeader>
-              <CardTitle>Décrivez votre besoin</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ContactForm />
-            </CardContent>
-          </Card>
+        <div className="mt-10 grid gap-6 lg:mt-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
+          <Reveal>
+            <Card>
+              <CardHeader>
+                <CardTitle>Décrivez votre besoin</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ContactForm />
+              </CardContent>
+            </Card>
+          </Reveal>
 
-          <div className="space-y-5">
+          <Reveal className="space-y-5" delay={100}>
             <Card>
               <CardHeader>
                 <CardTitle className="text-base">Coordonnées directes</CardTitle>
@@ -48,9 +51,9 @@ export function Contact() {
                           {...(channel.external
                             ? { target: '_blank', rel: 'noopener noreferrer' }
                             : {})}
-                          className="group flex items-center gap-3 rounded-md border border-border p-3 ring-offset-background transition-colors duration-200 hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                          className="group flex items-center gap-3 rounded-md border border-border p-3 ring-offset-background transition-[transform,border-color,background-color] duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                         >
-                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-muted text-primary">
+                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-muted text-primary transition-transform duration-200 group-hover:scale-105">
                             <Icon className="h-4 w-4" aria-hidden="true" />
                           </span>
                           <span className="min-w-0">
@@ -89,7 +92,7 @@ export function Contact() {
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

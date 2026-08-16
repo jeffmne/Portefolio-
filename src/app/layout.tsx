@@ -70,7 +70,16 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable}`}
     >
       <body className="min-h-screen font-sans">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+        {/* Sans JavaScript, l'observateur d'intersection ne s'execute pas :
+            on neutralise l'etat masque des blocs a reveler. */}
+        <noscript>
+          <style
+            dangerouslySetInnerHTML={{
+              __html: '[data-reveal]{opacity:1 !important;transform:none !important}',
+            }}
+          />
+        </noscript>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <a
             href="#contenu"
             className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:text-primary-foreground"

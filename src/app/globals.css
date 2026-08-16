@@ -62,6 +62,10 @@
     font-feature-settings:
       'rlig' 1,
       'calt' 1;
+    /* Bascule de theme adoucie */
+    transition:
+      background-color 300ms ease,
+      color 300ms ease;
   }
 
   html {
@@ -70,9 +74,19 @@
     scroll-padding-top: 5rem;
   }
 
+  /* Respect strict de la preference systeme : plus aucune animation ni
+     transition n'est jouee, y compris celles des composants Radix. */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
     }
   }
 
@@ -93,5 +107,24 @@
   .bg-dot-pattern {
     background-image: radial-gradient(hsl(var(--foreground) / 0.12) 1px, transparent 1px);
     background-size: 22px 22px;
+  }
+
+  /* Souligne anime des liens de navigation */
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.25rem;
+    height: 1px;
+    background-color: hsl(var(--primary));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 300ms ease-out;
+  }
+
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    transform: scaleX(1);
   }
 }

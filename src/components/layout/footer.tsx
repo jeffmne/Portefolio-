@@ -20,7 +20,7 @@ export function Footer() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                  className="inline-block py-2 text-sm text-muted-foreground underline-offset-4 transition-colors duration-200 hover:text-foreground hover:underline"
                 >
                   {link.label}
                 </Link>
@@ -36,7 +36,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Profil LinkedIn"
-              className="flex h-10 w-10 items-center justify-center rounded-md border border-border text-muted-foreground ring-offset-background transition-colors duration-200 hover:border-primary/50 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="flex h-10 w-10 items-center justify-center rounded-md border border-border text-muted-foreground ring-offset-background transition-[transform,color,border-color,background-color] duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:bg-muted/40 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <Linkedin className="h-4 w-4" aria-hidden="true" />
             </a>
@@ -47,7 +47,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Profil GitHub"
-              className="flex h-10 w-10 items-center justify-center rounded-md border border-border text-muted-foreground ring-offset-background transition-colors duration-200 hover:border-primary/50 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="flex h-10 w-10 items-center justify-center rounded-md border border-border text-muted-foreground ring-offset-background transition-[transform,color,border-color,background-color] duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:bg-muted/40 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <Github className="h-4 w-4" aria-hidden="true" />
             </a>
@@ -56,7 +56,7 @@ export function Footer() {
             <a
               href={email}
               aria-label="Envoyer un email"
-              className="flex h-10 w-10 items-center justify-center rounded-md border border-border text-muted-foreground ring-offset-background transition-colors duration-200 hover:border-primary/50 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="flex h-10 w-10 items-center justify-center rounded-md border border-border text-muted-foreground ring-offset-background transition-[transform,color,border-color,background-color] duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:bg-muted/40 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <Mail className="h-4 w-4" aria-hidden="true" />
             </a>

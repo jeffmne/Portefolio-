@@ -55,7 +55,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <div
         role="tablist"
         aria-label={`Détails du projet ${project.title}`}
-        className="flex gap-1 border-b border-border px-3 pt-3"
+        className="flex gap-1 overflow-x-auto border-b border-border px-3 pt-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {TABS.map((tab, index) => {
           const isActive = activeTab === tab.id;
@@ -74,10 +74,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
               onClick={() => setActiveTab(tab.id)}
               onKeyDown={(event) => handleTabKeyDown(event, index)}
               className={cn(
-                'rounded-t-md border-b-2 px-3 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                'shrink-0 rounded-t-md border-b-2 px-3 py-2.5 text-sm font-medium transition-[color,border-color,background-color] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                 isActive
                   ? 'border-primary text-foreground'
-                  : 'border-transparent text-muted-foreground hover:text-foreground',
+                  : 'border-transparent text-muted-foreground hover:border-border hover:text-foreground',
               )}
             >
               {tab.label}
@@ -86,13 +86,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
         })}
       </div>
 
-      <CardContent className="p-6">
+      <CardContent className="p-5 sm:p-6">
+        {/* Les panneaux restent montes : passer de `display:none` a visible
+            relance l'animation d'entree, sans remontage React. */}
         <div
           role="tabpanel"
           id={`${project.id}-panel-description`}
           aria-labelledby={`${project.id}-tab-description`}
           hidden={activeTab !== 'description'}
-          className="space-y-5"
+          className="space-y-5 duration-300 motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-1"
         >
           <div className="space-y-2">
             <h4 className="flex items-center gap-2 text-sm font-semibold text-foreground">
@@ -124,6 +126,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           id={`${project.id}-panel-stack`}
           aria-labelledby={`${project.id}-tab-stack`}
           hidden={activeTab !== 'stack'}
+          className="duration-300 motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-1"
         >
           <ul className="flex flex-wrap gap-2">
             {project.stack.map((item) => (
@@ -139,6 +142,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           id={`${project.id}-panel-galerie`}
           aria-labelledby={`${project.id}-tab-galerie`}
           hidden={activeTab !== 'galerie'}
+          className="duration-300 motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-1"
         >
           <ImageModal images={project.images} />
         </div>

@@ -8,32 +8,25 @@ import { Button } from '@/components/ui/button';
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Avant l'hydratation, le theme resolu est inconnu : on rend un espace
-  // reserve de meme taille pour eviter tout saut de mise en page.
-  if (!mounted) {
-    return <div className="h-10 w-10" aria-hidden="true" />;
-  }
-
-  const isDark = resolvedTheme === 'dark';
 
   return (
     <Button
       variant="ghost"
       size="icon"
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      aria-label={isDark ? 'Activer le thème clair' : 'Activer le thème sombre'}
+      className="relative"
+      onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+      aria-label="Changer de thème"
     >
-      {isDark ? (
-        <Sun className="h-5 w-5" aria-hidden="true" />
-      ) : (
-        <Moon className="h-5 w-5" aria-hidden="true" />
-      )}
+      {/* Les deux icones sont toujours rendues et permutees en CSS : pas de
+          decalage d'hydratation, et la bascule reste animee. */}
+      <Sun
+        className="h-5 w-5 rotate-0 scale-100 transition-transform duration-300 dark:-rotate-90 dark:scale-0"
+        aria-hidden="true"
+      />
+      <Moon
+        className="absolute h-5 w-5 rotate-90 scale-0 transition-transform duration-300 dark:rotate-0 dark:scale-100"
+        aria-hidden="true"
+      />
     </Button>
   );
 }

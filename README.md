@@ -5,6 +5,8 @@ Objectif : générer des demandes de devis et d'audits, et servir de vitrine tec
 
 Next.js 14 (App Router) · TypeScript strict · Tailwind CSS · shadcn/ui · déploiement Vercel.
 
+Design responsive de 320 px à 1920 px, thème sombre / clair, et une couche d'animations volontairement sobre — entièrement en CSS, sans bibliothèque d'animation, et intégralement désactivée pour les visiteurs ayant activé « réduire les animations ».
+
 ---
 
 ## Démarrage

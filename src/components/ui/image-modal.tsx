@@ -58,7 +58,7 @@ export function ImageModal({ images, className }: ImageModalProps) {
               type="button"
               onClick={() => setActiveIndex(index)}
               aria-label={`Agrandir l'image : ${image.caption}`}
-              className="group relative block w-full overflow-hidden rounded-md border border-border bg-muted/40 ring-offset-background transition-colors duration-200 hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="group relative block w-full overflow-hidden rounded-md border border-border bg-muted/40 ring-offset-background transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <span className="relative block aspect-[16/10]">
                 <Image
@@ -73,7 +73,7 @@ export function ImageModal({ images, className }: ImageModalProps) {
                   <Maximize2 className="h-5 w-5 text-foreground" aria-hidden="true" />
                 </span>
               </span>
-              <span className="block border-t border-border px-3 py-2 text-left font-mono text-xs text-muted-foreground">
+              <span className="block border-t border-border px-3 py-2 text-left font-mono text-[11px] text-muted-foreground transition-colors duration-200 group-hover:text-foreground sm:text-xs">
                 {image.caption}
               </span>
             </button>
@@ -122,7 +122,7 @@ export function ImageModal({ images, className }: ImageModalProps) {
                 type="button"
                 onClick={() => goTo(-1)}
                 aria-label="Image précédente"
-                className="absolute left-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/90 text-foreground transition-colors duration-200 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="absolute left-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/90 text-foreground transition-[background-color,transform] duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <ChevronLeft className="h-5 w-5" aria-hidden="true" />
               </button>
@@ -130,7 +130,7 @@ export function ImageModal({ images, className }: ImageModalProps) {
                 type="button"
                 onClick={() => goTo(1)}
                 aria-label="Image suivante"
-                className="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/90 text-foreground transition-colors duration-200 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/90 text-foreground transition-[background-color,transform] duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <ChevronRight className="h-5 w-5" aria-hidden="true" />
               </button>
@@ -139,7 +139,7 @@ export function ImageModal({ images, className }: ImageModalProps) {
 
           <DialogClose
             aria-label="Fermer la galerie"
-            className="absolute -top-12 right-0 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/90 text-foreground transition-colors duration-200 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="absolute right-2 top-2 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/90 text-foreground transition-[background-color,transform] duration-200 hover:scale-105 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:-top-12 sm:right-0"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </DialogClose>

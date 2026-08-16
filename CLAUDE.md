@@ -10,18 +10,18 @@
 
 ## Stack Technique
 
-| Couche         | Technologie                                                          |
-| -------------- | -------------------------------------------------------------------- |
-| Framework      | Next.js 14 (App Router, TypeScript strict)                           |
-| Styling        | Tailwind CSS 3.4                                                     |
-| Composants UI  | shadcn/ui (primitives Radix copiées dans `src/components/ui`)        |
-| Thème          | `next-themes` (dark / light / system)                                |
-| Icônes         | `lucide-react` uniquement — **zéro emoji dans tout le projet**       |
-| Images         | `next/image` avec lazy loading et formats optimisés (WebP)           |
-| Polices        | Inter (corps de texte), JetBrains Mono (badges tech, code snippets)  |
-| Formulaire     | Web3Forms (POST côté client, pas de backend custom)                  |
-| Hébergement    | Vercel                                                               |
-| Linter         | ESLint + Prettier, `strict: true` dans tsconfig                      |
+| Couche        | Technologie                                                         |
+| ------------- | ------------------------------------------------------------------- |
+| Framework     | Next.js 14 (App Router, TypeScript strict)                          |
+| Styling       | Tailwind CSS 3.4                                                    |
+| Composants UI | shadcn/ui (primitives Radix copiées dans `src/components/ui`)       |
+| Thème         | `next-themes` (dark / light / system)                               |
+| Icônes        | `lucide-react` uniquement — **zéro emoji dans tout le projet**      |
+| Images        | `next/image` avec lazy loading et formats optimisés (WebP)          |
+| Polices       | Inter (corps de texte), JetBrains Mono (badges tech, code snippets) |
+| Formulaire    | Web3Forms (POST côté client, pas de backend custom)                 |
+| Hébergement   | Vercel                                                              |
+| Linter        | ESLint + Prettier, `strict: true` dans tsconfig                     |
 
 ---
 
@@ -55,6 +55,7 @@ src/
 │       ├── service-card.tsx
 │       ├── project-card.tsx    # Onglets Description / Stack / Galerie
 │       ├── skill-badge.tsx
+│       ├── reveal.tsx          # Apparition au défilement (IntersectionObserver)
 │       ├── section-heading.tsx # Titre de section réutilisable
 │       ├── contact-form.tsx    # Formulaire Web3Forms (client)
 │       └── …                   # primitives shadcn : button, card, badge,
@@ -73,9 +74,35 @@ src/
 1. **Composants fonctionnels** uniquement, typage explicite des props via `interface`.
 2. **Données externalisées** dans `lib/data.ts` — aucune donnée en dur dans les composants.
 3. **Classes Tailwind thème-aware** : utiliser `bg-background`, `text-foreground`, `border-border`, `text-muted-foreground` — jamais de couleurs fixes en dehors de l'accent.
-4. **Pas de `"use client"`** sauf nécessité. Les seuls composants client sont : `theme-provider`, `theme-toggle`, `header` (menu mobile), `project-card` (onglets), `image-modal` (lightbox) et `contact-form`. Toutes les sections restent des Server Components.
+4. **Pas de `"use client"`** sauf nécessité. Les seuls composants client sont : `theme-provider`, `theme-toggle`, `header` (menu mobile), `project-card` (onglets), `image-modal` (lightbox), `reveal` (observateur d'intersection) et `contact-form`. Toutes les sections restent des Server Components.
 5. **Accessibilité** : attributs `aria-label` sur les boutons icônes, navigation au clavier sur la modale et les onglets, `alt` descriptif sur toutes les images, lien d'évitement vers le contenu principal.
-6. **Animations** : sobres, professionnelles. Transitions CSS (`transition-colors duration-200`) ou Tailwind `animate-`. Pas de bibliothèque d'animation lourde.
+6. **Animations** : voir la section dédiée ci-dessous. Uniquement du CSS (transitions Tailwind, `tailwindcss-animate`) et un observateur d'intersection maison — aucune bibliothèque d'animation.
+7. **Responsive** : mobile-first, testé de 320 px à 1920 px. Aucun débordement horizontal n'est toléré. Les titres utilisent des tailles fluides `clamp()` plutôt que des paliers de breakpoints.
+
+---
+
+## Système d'Animation
+
+Principe directeur : **l'animation souligne la structure, elle ne la décore pas.** Durées courtes (200–500 ms), déplacements faibles (≤ 12 px), aucune répétition en boucle sauf la pastille de disponibilité du hero.
+
+| Effet                    | Mise en œuvre                                                                        |
+| ------------------------ | ------------------------------------------------------------------------------------ |
+| Entrée du hero           | `animate-fade-in-up` en cascade, décalage de 90 ms par bloc (`STEP` dans `hero.tsx`) |
+| Apparition au défilement | `<Reveal>` — IntersectionObserver, déclenché une seule fois, `delay` pour la cascade |
+| Survol des cartes        | Élévation (`-translate-y-1`), bordure accent, ombre teintée, icône `scale-105`       |
+| Header                   | Passe de 64 à 56 px au défilement, bordure et ombre révélées                         |
+| Liens de navigation      | Souligné `.link-underline` déployé depuis la gauche                                  |
+| Bascule de thème         | Rotation croisée Soleil / Lune via les variantes `dark:`                             |
+| Onglets de projet        | Panneau en `animate-in fade-in slide-in-from-bottom` à chaque changement             |
+| Lightbox, menu mobile    | Animations `tailwindcss-animate` des primitives Radix                                |
+| Boutons                  | `active:scale-[0.98]`, flèche du CTA principal décalée au survol                     |
+
+**Règle non négociable — `prefers-reduced-motion`.** Deux garde-fous complémentaires :
+
+1. Les états masqués ne sont appliqués qu'avec la variante `motion-safe:` — un visiteur ayant réduit les animations voit le contenu immédiatement, sans dépendre de JavaScript.
+2. `globals.css` neutralise globalement `animation-duration` et `transition-duration`, y compris pour les animations internes de Radix.
+
+Sans JavaScript, une règle `<noscript>` dans `layout.tsx` réaffiche les blocs `[data-reveal]`.
 
 ---
 
@@ -134,13 +161,13 @@ Seule dérogation à la palette d'origine : `--destructive` en thème sombre est
 
 Grille de 5 cartes. Chaque carte = icône lucide + titre + description + tags tech.
 
-| #   | Titre                                       | Icône lucide | Tags                                |
-| --- | ------------------------------------------- | ------------ | ----------------------------------- |
-| 1   | Digitalisation & Applications Web Sur-Mesure | `Code2`      | Laravel, Python, React              |
-| 2   | Création de Sites Web & Présence Digitale   | `Globe`      | Next.js, SEO, Hébergement           |
-| 3   | Infrastructures, Réseaux & Sécurité         | `Shield`     | FortiGate, pfSense, Cisco, VPN      |
-| 4   | Administration Système & Auto-Hébergement   | `Server`     | Windows Server, AD, VMware, Synology |
-| 5   | Audits de Sécurité & Maintenance IT         | `ScanSearch` | Pentest, Nmap, Wireshark, Contrats  |
+| #   | Titre                                        | Icône lucide | Tags                                 |
+| --- | -------------------------------------------- | ------------ | ------------------------------------ |
+| 1   | Digitalisation & Applications Web Sur-Mesure | `Code2`      | Laravel, Python, React               |
+| 2   | Création de Sites Web & Présence Digitale    | `Globe`      | Next.js, SEO, Hébergement            |
+| 3   | Infrastructures, Réseaux & Sécurité          | `Shield`     | FortiGate, pfSense, Cisco, VPN       |
+| 4   | Administration Système & Auto-Hébergement    | `Server`     | Windows Server, AD, VMware, Synology |
+| 5   | Audits de Sécurité & Maintenance IT          | `ScanSearch` | Pentest, Nmap, Wireshark, Contrats   |
 
 Chaque carte a un état `hover` visible (léger lift + bordure accent).
 
@@ -165,12 +192,12 @@ Composant `ProjectCard` avec onglets accessibles (`role="tablist"`, navigation f
 
 Matrice en 4 catégories. Chaque compétence = badge avec texte en `font-mono` (JetBrains Mono).
 
-| Catégorie                  | Icône          | Technologies                                                                                |
-| -------------------------- | -------------- | ------------------------------------------------------------------------------------------- |
-| Réseau & Sécurité          | `ShieldCheck`  | Cisco, FortiGate, pfSense, VPN, Wireshark, Nmap, Pentest                                     |
-| Systèmes & Virtualisation  | `MonitorCog`   | Windows Server, Active Directory, GPO, DNS, DHCP, Linux, VMware, Hyper-V, Synology DSM       |
-| Développement & BDD        | `Database`     | PHP/Laravel, Python, Bash, C/C++, MySQL, SQL Server                                          |
-| Méthodologies & Outils IA  | `BrainCircuit` | Claude Code, ChatGPT, Gemini, Git                                                            |
+| Catégorie                 | Icône          | Technologies                                                                           |
+| ------------------------- | -------------- | -------------------------------------------------------------------------------------- |
+| Réseau & Sécurité         | `ShieldCheck`  | Cisco, FortiGate, pfSense, VPN, Wireshark, Nmap, Pentest                               |
+| Systèmes & Virtualisation | `MonitorCog`   | Windows Server, Active Directory, GPO, DNS, DHCP, Linux, VMware, Hyper-V, Synology DSM |
+| Développement & BDD       | `Database`     | PHP/Laravel, Python, Bash, C/C++, MySQL, SQL Server                                    |
+| Méthodologies & Outils IA | `BrainCircuit` | Claude Code, ChatGPT, Gemini, Git                                                      |
 
 ### 6. Formation & Certifications (id="formation")
 
