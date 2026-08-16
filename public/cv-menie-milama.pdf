@@ -1,0 +1,195 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [7 0 R 8 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Length 6219 >>
+stream
+0.110 0.310 0.850 rg
+56.00 781.89 34.00 3.00 re f
+0.060 0.060 0.070 rg
+BT /F2 23 Tf 56.00 759.89 Td (MENIE MILAMA Rod) Tj ET
+0.110 0.310 0.850 rg
+BT /F2 11.5 Tf 56.00 741.89 Td (Ingénieur Systèmes, Réseaux & Sécurité) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 10.5 Tf 56.00 727.89 Td (Consultant en Digitalisation & Développeur Web) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9 Tf 56.00 711.89 Td (jeffmenie@icloud.com  ·  +241 62 41 73 34  ·  Gabon — missions sur site et à distance) Tj ET
+0.850 0.850 0.870 RG 0.7 w 56.00 701.89 m 539.28 701.89 l S
+0.110 0.310 0.850 rg
+BT /F2 9.5 Tf 56.00 679.89 Td (PROFIL) Tj ET
+0.850 0.850 0.870 RG 0.7 w 56.00 672.89 m 539.28 672.89 l S
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 56.00 657.89 Td (Ingénieur Systèmes, Réseaux & Sécurité. J'accompagne les entreprises dans la sécurisation de leur infrastructure) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 56.00 644.89 Td (IT, l'automatisation de leurs processus et la création de solutions web sur mesure. Profil hybride réunissant) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 56.00 631.89 Td (administration systèmes et réseaux, développement d'applications métier et cybersécurité offensive.) Tj ET
+0.110 0.310 0.850 rg
+BT /F2 9.5 Tf 56.00 602.89 Td (COMPÉTENCES TECHNIQUES) Tj ET
+0.850 0.850 0.870 RG 0.7 w 56.00 595.89 m 539.28 595.89 l S
+0.060 0.060 0.070 rg
+BT /F2 9.5 Tf 56.00 580.89 Td (Réseau & Sécurité : ) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 153.77 580.89 Td (Cisco, FortiGate, pfSense, VPN, Wireshark, Nmap, Pentest) Tj ET
+0.060 0.060 0.070 rg
+BT /F2 9.5 Tf 56.00 564.89 Td (Systèmes & Virtualisation : ) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 188.64 564.89 Td (Windows Server, Active Directory, GPO, DNS, DHCP, Linux, VMware, Hyper-V,) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 188.64 551.89 Td (Synology DSM) Tj ET
+0.060 0.060 0.070 rg
+BT /F2 9.5 Tf 56.00 535.89 Td (Développement & BDD : ) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 172.58 535.89 Td (PHP/Laravel, Python, Bash, C/C++, MySQL, SQL Server) Tj ET
+0.060 0.060 0.070 rg
+BT /F2 9.5 Tf 56.00 519.89 Td (Méthodologies & Outils IA : ) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 188.64 519.89 Td (Claude Code, ChatGPT, Gemini, Git) Tj ET
+0.110 0.310 0.850 rg
+BT /F2 9.5 Tf 56.00 487.89 Td (PROJETS & RÉALISATIONS) Tj ET
+0.850 0.850 0.870 RG 0.7 w 56.00 480.89 m 539.28 480.89 l S
+0.060 0.060 0.070 rg
+BT /F2 10.5 Tf 56.00 465.89 Td (Plateforme CMDB & Nomenclature de Parc IT) Tj ET
+0.110 0.310 0.850 rg
+BT /F1 9 Tf 56.00 452.89 Td (KOMO Gestion Groupe) Tj ET
+0.110 0.310 0.850 rg
+BT /F1 9.5 Tf 60.00 438.89 Td (•) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 438.89 Td (Problématique : absence de nomenclature des postes, gestion manuelle du matériel et zéro visibilité sur le) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 425.89 Td (parc IT.) Tj ET
+0.110 0.310 0.850 rg
+BT /F1 9.5 Tf 60.00 412.89 Td (•) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 412.89 Td (Solution : application web sur mesure \(Laravel + MySQL\) générant automatiquement la nomenclature des) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 399.89 Td (postes, attribuant les utilisateurs et cartographiant l’ensemble des équipements \(PC, serveurs, switchs,) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 386.89 Td (firewalls, points d’accès, imprimantes\).) Tj ET
+0.110 0.310 0.850 rg
+BT /F1 9.5 Tf 60.00 373.89 Td (•) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 373.89 Td (Infrastructure : NAS Synology, Reverse Proxy Nginx, chiffrement SSL/TLS, base MySQL.) Tj ET
+0.060 0.060 0.070 rg
+BT /F2 9 Tf 56.00 356.89 Td (Stack : ) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9 Tf 95.48 356.89 Td (Laravel, PHP, MySQL, Nginx, SSL/TLS, Synology DSM) Tj ET
+0.060 0.060 0.070 rg
+BT /F2 10.5 Tf 56.00 331.89 Td (Architecture Réseau Sécurisée & Lab Pentest) Tj ET
+0.110 0.310 0.850 rg
+BT /F1 9.5 Tf 60.00 316.89 Td (•) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 316.89 Td (Simulation d’infrastructure d’entreprise sous VMware / Hyper-V : Active Directory 2019, pare-feu FortiGate et) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 303.89 Td (pfSense, segmentation en VLANs.) Tj ET
+0.110 0.310 0.850 rg
+BT /F1 9.5 Tf 60.00 290.89 Td (•) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 290.89 Td (Audit du trafic et de la surface d’exposition avec Wireshark et Nmap, puis durcissement des configurations.) Tj ET
+0.060 0.060 0.070 rg
+BT /F2 9 Tf 56.00 273.89 Td (Stack : ) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9 Tf 95.48 273.89 Td (VMware, Hyper-V, Windows Server 2019, Active Directory, FortiGate, pfSense, VLAN, Wireshark, Nmap) Tj ET
+0.110 0.310 0.850 rg
+BT /F2 9.5 Tf 56.00 244.89 Td (SERVICES PROPOSÉS) Tj ET
+0.850 0.850 0.870 RG 0.7 w 56.00 237.89 m 539.28 237.89 l S
+0.110 0.310 0.850 rg
+BT /F1 9.5 Tf 60.00 222.89 Td (•) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 222.89 Td (Digitalisation & applications web sur-mesure — Laravel, Python, React) Tj ET
+0.110 0.310 0.850 rg
+BT /F1 9.5 Tf 60.00 209.89 Td (•) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 209.89 Td (Création de sites web & présence digitale — Next.js, SEO, hébergement) Tj ET
+0.110 0.310 0.850 rg
+BT /F1 9.5 Tf 60.00 196.89 Td (•) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 196.89 Td (Infrastructures, réseaux & sécurité — FortiGate, pfSense, Cisco, VPN) Tj ET
+0.110 0.310 0.850 rg
+BT /F1 9.5 Tf 60.00 183.89 Td (•) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 183.89 Td (Administration système & auto-hébergement — Windows Server, AD, VMware, Synology) Tj ET
+0.110 0.310 0.850 rg
+BT /F1 9.5 Tf 60.00 170.89 Td (•) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 170.89 Td (Audits de sécurité & maintenance IT — Pentest, Nmap, Wireshark, contrats de maintenance) Tj ET
+0.110 0.310 0.850 rg
+BT /F2 9.5 Tf 56.00 141.89 Td (FORMATION) Tj ET
+0.850 0.850 0.870 RG 0.7 w 56.00 134.89 m 539.28 134.89 l S
+0.110 0.310 0.850 rg
+BT /F2 9 Tf 56.00 119.89 Td (2022 — 2025) Tj ET
+0.060 0.060 0.070 rg
+BT /F2 10 Tf 56.00 106.89 Td (Diplôme d'Ingénieur Génie Informatique \(Réseaux & Systèmes\)) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9 Tf 56.00 94.89 Td (Université Africaine des Sciences) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9 Tf 56.00 81.89 Td (Conception et administration d'infrastructures réseau et système, développement logiciel et sécurité des systèmes) Tj ET
+endstream
+endobj
+4 0 obj
+<< /Length 1264 >>
+stream
+0.420 0.420 0.460 rg
+BT /F1 9 Tf 56.00 785.89 Td (d'information.) Tj ET
+0.110 0.310 0.850 rg
+BT /F2 9 Tf 56.00 766.89 Td (2020 — 2022) Tj ET
+0.060 0.060 0.070 rg
+BT /F2 10 Tf 56.00 753.89 Td (Classes Préparatoires Intégrées \(MPSI\)) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9 Tf 56.00 741.89 Td (Université Africaine des Sciences) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9 Tf 56.00 728.89 Td (Analyse, modélisation mathématique et résolution de problèmes complexes.) Tj ET
+0.110 0.310 0.850 rg
+BT /F2 9.5 Tf 56.00 693.89 Td (FORMATIONS CONTINUES) Tj ET
+0.850 0.850 0.870 RG 0.7 w 56.00 686.89 m 539.28 686.89 l S
+0.110 0.310 0.850 rg
+BT /F1 9.5 Tf 60.00 671.89 Td (•) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 671.89 Td (Administration Système — Windows Server 2019 — Alphorm) Tj ET
+0.110 0.310 0.850 rg
+BT /F1 9.5 Tf 60.00 658.89 Td (•) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 658.89 Td (Méthodologies de Pentest & Audits de Sécurité — Alphorm) Tj ET
+0.110 0.310 0.850 rg
+BT /F1 9.5 Tf 60.00 645.89 Td (•) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 645.89 Td (MOOC Cybersécurité — Cyberini) Tj ET
+0.110 0.310 0.850 rg
+BT /F1 9.5 Tf 60.00 632.89 Td (•) Tj ET
+0.420 0.420 0.460 rg
+BT /F1 9.5 Tf 72.00 632.89 Td (Claude Code & Prompt Engineering — Alphorm) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 3 0 R >>
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000127 00000 n 
+0000006398 00000 n 
+0000007714 00000 n 
+0000007811 00000 n 
+0000007913 00000 n 
+0000008055 00000 n 
+trailer
+<< /Size 9 /Root 1 0 R /Info << /Title (CV - MENIE MILAMA Rod) /Author (MENIE MILAMA Rod) >> >>
+startxref
+8197
+%%EOF
