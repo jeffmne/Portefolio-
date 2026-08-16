@@ -218,9 +218,9 @@ export const projects: Project[] = [
     summary:
       'Application web sur mesure de gestion et de cartographie du parc informatique, avec génération automatique de la nomenclature des postes.',
     problem:
-      "Absence de nomenclature des postes, gestion manuelle du matériel et zéro visibilité sur le parc IT : impossible de savoir quel équipement était attribué à quel collaborateur, ni d'anticiper les renouvellements.",
+      "Les noms et numéros à attribuer aux nouveaux postes étaient inscrits sur un tableau : une trace unique, qu'un simple effacement suffisait à faire disparaître. À la remise du matériel, le collaborateur signait sa décharge sur un cahier, tenu séparément du tableau. Deux registres manuels et disjoints, fastidieux à mettre à jour, et incapables de répondre à la question la plus simple : quel poste est entre les mains de qui ?",
     solution:
-      "Application web sur mesure (Laravel + MySQL) générant automatiquement la nomenclature des postes, attribuant les utilisateurs et cartographiant l'ensemble des équipements : PC, serveurs, switchs, firewalls, points d'accès et imprimantes.",
+      "Application web sur mesure (Laravel + MySQL) qui remplace le tableau et le cahier par une source unique : la nomenclature des postes est générée automatiquement, chaque équipement est rattaché à son utilisateur, et l'ensemble du parc est cartographié — PC, serveurs, switchs, firewalls, points d'accès et imprimantes.",
     infrastructure:
       'Déploiement auto-hébergé sur NAS Synology, exposé via un Reverse Proxy Nginx avec chiffrement SSL/TLS et base de données MySQL.',
     stack: ['Laravel', 'PHP', 'MySQL', 'Nginx', 'SSL/TLS', 'Synology DSM', 'Reverse Proxy'],

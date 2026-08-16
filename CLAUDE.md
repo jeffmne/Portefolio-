@@ -179,7 +179,7 @@ Chaque carte a un état `hover` visible (léger lift + bordure accent).
 #### Cas 1 — Plateforme CMDB & Nomenclature de Parc IT
 
 - **Organisation :** KOMO Gestion Groupe — _Stage d'ingénieur Systèmes & Réseaux_ (champs `organisation` et `context`)
-- **Problématique :** Absence de nomenclature des postes, gestion manuelle du matériel, zéro visibilité sur le parc IT.
+- **Problématique :** Les noms et numéros des nouveaux postes étaient inscrits sur un tableau (effaçable, donc fragile) et les remises de matériel consignées sur un cahier de décharge distinct — deux registres manuels disjoints, d'où l'impossibilité de savoir quel poste appartenait à qui. Formulation issue du récit direct du propriétaire : ne pas la remplacer par une problématique générique.
 - **Solution :** Application web sur mesure (Laravel + MySQL) générant automatiquement la nomenclature des postes, attribuant les utilisateurs et cartographiant l'ensemble des équipements (PC, serveurs, switchs, firewalls, AP, imprimantes).
 - **Infrastructure :** NAS Synology, Reverse Proxy Nginx, SSL/TLS, MySQL.
 - **Galerie :** 3 images via `ImageModal` — `cmdb-dashboard.webp`, `cmdb-parc.webp`, `cmdb-naming.webp`.
