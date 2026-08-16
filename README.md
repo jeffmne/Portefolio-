@@ -53,12 +53,13 @@ Sans clé configurée, le formulaire reste affiché mais invite explicitement le
 
 Ces éléments sont des valeurs de départ, à remplacer par les contenus définitifs :
 
-- **`public/cv-menie-milama.pdf`** — CV généré automatiquement à partir des informations du brief. À remplacer par le CV définitif (le nom de fichier doit rester identique, ou mettre à jour `siteConfig.cvPath`).
 - **`public/images/projects/*.webp`** — maquettes d'illustration représentant l'application CMDB et le lab réseau. À remplacer par les vraies captures d'écran (format 16/10 recommandé, idéalement 1600 × 1000).
 - **`socialLinks`** dans `src/lib/data.ts` — URLs LinkedIn et GitHub à confirmer.
 - **`siteConfig.url`** dans `src/lib/data.ts` — domaine réel une fois le site déployé ; il alimente `metadataBase`, la balise canonical, l'Open Graph et le sitemap.
 
 Tout le contenu textuel du site est centralisé dans `src/lib/data.ts` : aucune modification de composant n'est nécessaire pour mettre à jour un service, un projet ou une compétence.
+
+> Le CV servi par le bouton « Télécharger mon CV » est `public/cv-menie-milama.pdf`. Pour le mettre à jour, remplacer ce fichier en conservant exactement ce nom (sinon, ajuster `siteConfig.cvPath`).
 
 ---
 
