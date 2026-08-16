@@ -42,10 +42,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Card className="overflow-hidden transition-colors duration-200 hover:border-primary/40">
       <CardHeader className="gap-3 border-b border-border">
-        {project.client ? (
-          <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-primary">
-            <Building2 className="h-3.5 w-3.5" aria-hidden="true" />
-            {project.client}
+        {project.organisation ? (
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs uppercase tracking-wider text-primary">
+            <Building2 className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+            {project.organisation}
+            {project.context ? (
+              <span className="text-muted-foreground">· {project.context}</span>
+            ) : null}
           </p>
         ) : null}
         <CardTitle className="text-xl sm:text-2xl">{project.title}</CardTitle>

@@ -34,10 +34,21 @@ export interface ProjectImage {
   caption: string;
 }
 
+export interface Experience {
+  id: string;
+  role: string;
+  organisation: string;
+  period: string;
+  highlights: string[];
+}
+
 export interface Project {
   id: string;
   title: string;
-  client?: string;
+  /** Structure au sein de laquelle le projet a été mené. */
+  organisation?: string;
+  /** Cadre de l'intervention (stage, mission freelance, projet personnel…). */
+  context?: string;
   summary: string;
   problem: string;
   solution: string;
@@ -121,6 +132,7 @@ export const siteConfig = {
 export const navLinks: NavLink[] = [
   { label: 'Services', href: '#services' },
   { label: 'Projets', href: '#projets' },
+  { label: 'Expérience', href: '#experience' },
   { label: 'Compétences', href: '#competences' },
   { label: 'Formation', href: '#formation' },
   { label: 'Contact', href: '#contact' },
@@ -200,7 +212,8 @@ export const projects: Project[] = [
   {
     id: 'cmdb',
     title: 'Plateforme CMDB & Nomenclature de Parc IT',
-    client: 'KOMO Gestion Groupe',
+    organisation: 'KOMO Gestion Groupe',
+    context: "Stage d'ingénieur Systèmes & Réseaux",
     summary:
       'Application web sur mesure de gestion et de cartographie du parc informatique, avec génération automatique de la nomenclature des postes.',
     problem:
@@ -261,6 +274,51 @@ export const projects: Project[] = [
         alt: "Session d'audit de sécurité avec analyse de trafic et scan de ports",
         caption: 'Audit — analyse de trafic & scan',
       },
+    ],
+  },
+];
+
+/* -------------------------------------------------------------------------- */
+/*                          Expériences professionnelles                      */
+/* -------------------------------------------------------------------------- */
+
+export const experiences: Experience[] = [
+  {
+    id: 'komo',
+    role: 'Stagiaire Ingénieur Systèmes & Réseaux',
+    organisation: 'KOMO Gestion Groupe',
+    /**
+     * TODO : compléter la période. Le CV indique « 03/2026 - 05/20XX » :
+     * la date de fin y est restée à l'état de gabarit. On n'affiche donc que
+     * la date de début, plutôt que d'affirmer une fin ou une mission en cours.
+     */
+    period: 'Mars 2026',
+    highlights: [
+      "Développement : création d'un logiciel de gestion du parc informatique.",
+      "Réseau : configuration et administration d'équipements Cisco.",
+      'Systèmes : administration de Windows Server, Active Directory et des environnements virtualisés.',
+      "Support IT : assistance utilisateurs, dépannage des imprimantes réseau, téléphonie IP et résolution d'incidents.",
+    ],
+  },
+  {
+    id: 'rgpl',
+    role: 'Agent Recenseur — RGPL 2025',
+    organisation: 'Direction Générale de la Statistique',
+    period: 'Février — avril 2026',
+    highlights: [
+      'Collecte de données : administration de questionnaires sur terminaux mobiles.',
+      'Géolocalisation : localisation et validation des ménages via GPS.',
+      'Conformité : respect des protocoles de confidentialité et sécurisation des données.',
+    ],
+  },
+  {
+    id: 'malicko',
+    role: 'Assistant Technique IT & Bureautique',
+    organisation: 'Cyber Café Malicko',
+    period: 'Juillet — septembre 2017',
+    highlights: [
+      'Maintien opérationnel, diagnostic matériel, mises à jour et sécurisation du réseau local.',
+      'Support client direct.',
     ],
   },
 ];

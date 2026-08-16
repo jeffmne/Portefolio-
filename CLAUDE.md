@@ -46,6 +46,7 @@ src/
 │   │   ├── hero.tsx
 │   │   ├── services.tsx
 │   │   ├── projects.tsx
+│   │   ├── experience.tsx
 │   │   ├── skills.tsx
 │   │   ├── education.tsx
 │   │   └── contact.tsx
@@ -143,7 +144,7 @@ Seule dérogation à la palette d'origine : `--destructive` en thème sombre est
 ### 1. Header
 
 - Logo texte : **MENIE MILAMA Rod** — sous-titre `Ingénieur IT & Consultant Digital`
-- Navigation : liens ancre vers `#services`, `#projets`, `#competences`, `#formation`, `#contact`
+- Navigation : liens ancre vers `#services`, `#projets`, `#experience`, `#competences`, `#formation`, `#contact`
 - `ThemeToggle` : bouton avec icônes `Sun` / `Moon` de lucide-react
 - Sticky header avec `backdrop-blur-md` et bordure inférieure subtile
 - Menu hamburger sur mobile (Sheet shadcn)
@@ -175,7 +176,7 @@ Chaque carte a un état `hover` visible (léger lift + bordure accent).
 
 #### Cas 1 — Plateforme CMDB & Nomenclature de Parc IT
 
-- **Client :** KOMO Gestion Groupe
+- **Organisation :** KOMO Gestion Groupe — _Stage d'ingénieur Systèmes & Réseaux_ (champs `organisation` et `context`)
 - **Problématique :** Absence de nomenclature des postes, gestion manuelle du matériel, zéro visibilité sur le parc IT.
 - **Solution :** Application web sur mesure (Laravel + MySQL) générant automatiquement la nomenclature des postes, attribuant les utilisateurs et cartographiant l'ensemble des équipements (PC, serveurs, switchs, firewalls, AP, imprimantes).
 - **Infrastructure :** NAS Synology, Reverse Proxy Nginx, SSL/TLS, MySQL.
@@ -188,7 +189,20 @@ Chaque carte a un état `hover` visible (léger lift + bordure accent).
 
 Composant `ProjectCard` avec onglets accessibles (`role="tablist"`, navigation flèches gauche/droite) pour basculer entre Description / Stack / Galerie.
 
-### 5. Compétences (id="competences")
+### 5. Expérience Professionnelle (id="experience")
+
+Liste verticale de cartes, une par poste : intitulé, organisation, période et missions en puces.
+Les données proviennent **exclusivement du CV** (`experiences` dans `lib/data.ts`) — ne rien y ajouter qui ne figure pas dans le CV.
+
+| Poste                                  | Organisation                         | Période                               |
+| -------------------------------------- | ------------------------------------ | ------------------------------------- |
+| Stagiaire Ingénieur Systèmes & Réseaux | KOMO Gestion Groupe                  | Mars 2026 — _date de fin à compléter_ |
+| Agent Recenseur — RGPL 2025            | Direction Générale de la Statistique | Février — avril 2026                  |
+| Assistant Technique IT & Bureautique   | Cyber Café Malicko                   | Juillet — septembre 2017              |
+
+> Le CV porte encore le gabarit `05/20XX` comme date de fin du stage KOMO : seule la date de début est affichée tant que la période n'est pas confirmée.
+
+### 6. Compétences (id="competences")
 
 Matrice en 4 catégories. Chaque compétence = badge avec texte en `font-mono` (JetBrains Mono).
 
@@ -199,7 +213,7 @@ Matrice en 4 catégories. Chaque compétence = badge avec texte en `font-mono` (
 | Développement & BDD       | `Database`     | PHP/Laravel, Python, Bash, C/C++, MySQL, SQL Server                                    |
 | Méthodologies & Outils IA | `BrainCircuit` | Claude Code, ChatGPT, Gemini, Git                                                      |
 
-### 6. Formation & Certifications (id="formation")
+### 7. Formation & Certifications (id="formation")
 
 Timeline verticale, chaque entrée = pastille accent + date + contenu.
 
@@ -217,7 +231,7 @@ Encadré "Pourquoi moi ?" en fin de section :
 - **Profil hybride rare** : Systèmes/Réseaux + Développement Web + Cybersécurité
 - **Agilité IA** : Utilisation de Claude Code pour diviser par 2 les délais de livraison
 
-### 7. Contact (id="contact")
+### 8. Contact (id="contact")
 
 Formulaire côté gauche, coordonnées côté droit (layout 2 colonnes desktop, stack mobile).
 
@@ -239,7 +253,7 @@ Formulaire côté gauche, coordonnées côté droit (layout 2 colonnes desktop, 
 
 **Intégration formulaire :** requête POST vers Web3Forms, clé publique lue dans `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`. Message de succès / d'erreur affiché sous le bouton, annoncé aux lecteurs d'écran (`role="status"`). Champ honeypot `botcheck` contre les robots.
 
-### 8. Footer
+### 9. Footer
 
 - Copyright : `© <année en cours> MENIE MILAMA Rod. Tous droits réservés.`
 - Liens rapides : Services, Projets, Contact
