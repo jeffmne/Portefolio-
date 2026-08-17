@@ -68,7 +68,11 @@ src/
     ├── images/
     │   ├── menie-milama-rod.webp  # Portrait du hero
     │   └── projects/       # Captures d'écran CMDB, lab réseau
+    ├── qr/                 # QR codes vers le portfolio (voir plus bas)
     └── cv-menie-milama.pdf
+
+scripts/
+└── generate-qr.mjs         # Régénère public/qr/ depuis siteConfig.url
 ```
 
 ### Règles strictes
@@ -313,7 +317,31 @@ Formulaire côté gauche, coordonnées côté droit (layout 2 colonnes desktop, 
 - Toutes les images en `next/image`, `loading="lazy"` par défaut, `priority` sur l'image ouverte en lightbox
 - Score Lighthouse cible : 90+ sur les 4 métriques
 
-> `siteConfig.url` dans `lib/data.ts` doit être mis à jour avec le domaine réel après le premier déploiement (il alimente `metadataBase`, la balise canonical et le sitemap).
+> `siteConfig.url` dans `lib/data.ts` doit être mis à jour avec le domaine réel après le premier déploiement (il alimente `metadataBase`, la balise canonical, le sitemap **et les QR codes**).
+
+---
+
+## QR Codes
+
+`public/qr/` contient quatre fichiers destinés au CV papier et au partage direct — deux variantes (noir, bleu de marque) en deux formats.
+
+| Fichier               | Usage                                                                  |
+| --------------------- | ---------------------------------------------------------------------- |
+| `portfolio-qr.svg`    | Impression. Vectoriel, calibré **30 × 30 mm** zone de silence comprise |
+| `portfolio-qr.png`    | 1200 px, pour les outils qui n'acceptent pas le SVG                    |
+| `portfolio-qr-bleu.*` | Mêmes formats, modules en `#1d4ed8` (le `--primary` clair)             |
+
+Paramètres retenus, à ne pas assouplir sans raison : correction d'erreur **niveau Q** (25 % de redondance — le support est du papier, qui se plie et se photocopie) et **zone de silence de 4 modules**, sans laquelle un scanner peut échouer. Le symbole est en version 4, soit 33 × 33 modules ; à 30 mm cela fait 0,73 mm par module, largement au-dessus du plancher de lisibilité d'environ 0,4 mm.
+
+**Régénération** — obligatoire à tout changement de `siteConfig.url` :
+
+```bash
+npm i --no-save qrcode && node scripts/generate-qr.mjs
+```
+
+`qrcode` reste hors `package.json` : rien n'est généré à l'exécution, ce sont des fichiers produits une fois puis versionnés. Le script relit l'URL directement dans `data.ts`, elle n'est donc jamais dupliquée.
+
+> Un QR déjà imprimé ne se met pas à jour. Si un nom de domaine remplace l'adresse Vercel, l'ancienne doit continuer de rediriger, sans quoi tous les CV distribués pointeront dans le vide.
 
 ---
 
