@@ -168,7 +168,7 @@ Grille de 5 cartes. Chaque carte = icône lucide + titre + description + tags te
 | --- | -------------------------------------------- | ------------ | ------------------------------------ |
 | 1   | Digitalisation & Applications Web Sur-Mesure | `Code2`      | Laravel, Python, React               |
 | 2   | Création de Sites Web & Présence Digitale    | `Globe`      | Next.js, SEO, Hébergement            |
-| 3   | Infrastructures, Réseaux & Sécurité          | `Shield`     | FortiGate, pfSense, Cisco, VPN       |
+| 3   | Infrastructures, Réseaux & Sécurité          | `Shield`     | pfSense, Cisco, VLAN, VPN            |
 | 4   | Administration Système & Auto-Hébergement    | `Server`     | Windows Server, AD, VMware, Synology |
 | 5   | Audits de Sécurité & Maintenance IT          | `ScanSearch` | Pentest, Nmap, Wireshark, Contrats   |
 
@@ -186,7 +186,7 @@ Chaque carte a un état `hover` visible (léger lift + bordure accent).
 
 #### Cas 2 — Architecture Réseau Sécurisée & Lab Pentest
 
-- **Description :** Simulation d'infrastructure d'entreprise sous VMware/Hyper-V. Active Directory 2019, FortiGate, pfSense, VLANs, audit Wireshark & Nmap.
+- **Description :** Simulation d'infrastructure d'entreprise sous VMware/Hyper-V. Active Directory 2019, pfSense, VLANs, audit Wireshark & Nmap.
 - **Galerie :** `lab-architecture.webp`, `lab-pentest.webp`.
 
 Composant `ProjectCard` avec onglets accessibles (`role="tablist"`, navigation flèches gauche/droite) pour basculer entre Description / Stack / Galerie.
@@ -212,7 +212,7 @@ Matrice en 4 catégories. Chaque compétence = badge avec texte en `font-mono` (
 
 | Catégorie                 | Icône          | Technologies                                                                           |
 | ------------------------- | -------------- | -------------------------------------------------------------------------------------- |
-| Réseau & Sécurité         | `ShieldCheck`  | Cisco, FortiGate, pfSense, VPN, Wireshark, Nmap, Pentest                               |
+| Réseau & Sécurité         | `ShieldCheck`  | Cisco, pfSense, VPN, Wireshark, Nmap, Pentest                                          |
 | Systèmes & Virtualisation | `MonitorCog`   | Windows Server, Active Directory, GPO, DNS, DHCP, Linux, VMware, Hyper-V, Synology DSM |
 | Développement & BDD       | `Database`     | PHP/Laravel, Python, Bash, C/C++, MySQL, SQL Server                                    |
 | Méthodologies & Outils IA | `BrainCircuit` | Claude Code, ChatGPT, Gemini, Git                                                      |

@@ -120,7 +120,6 @@ export const siteConfig = {
     'freelance IT',
     'Laravel',
     'Next.js',
-    'FortiGate',
     'pfSense',
     'Active Directory',
   ],
@@ -156,7 +155,6 @@ export const hero = {
   headingAccent: 'Sécurité',
   /** Bandeau défilant sous le hero. */
   marquee: [
-    'FortiGate',
     'pfSense',
     'Active Directory',
     'Laravel',
@@ -214,7 +212,7 @@ export const services: Service[] = [
     description:
       "Conception et déploiement d'architectures réseau segmentées : pare-feu, VLANs, accès distants VPN et politiques de filtrage alignées sur vos besoins métier.",
     icon: Shield,
-    tags: ['FortiGate', 'pfSense', 'Cisco', 'VPN'],
+    tags: ['pfSense', 'Cisco', 'VLAN', 'VPN'],
   },
   {
     id: 'administration-systeme',
@@ -280,7 +278,7 @@ export const projects: Project[] = [
     problem:
       "Valider des architectures réseau et des politiques de sécurité avant leur mise en production, sans exposer d'environnement client.",
     solution:
-      "Simulation d'infrastructure d'entreprise sous VMware / Hyper-V : Active Directory 2019, pare-feu FortiGate et pfSense, segmentation en VLANs, puis audit du trafic et de la surface d'exposition avec Wireshark et Nmap.",
+      "Simulation d'infrastructure d'entreprise sous VMware / Hyper-V : Active Directory 2019, pare-feu pfSense, segmentation en VLANs, puis audit du trafic et de la surface d'exposition avec Wireshark et Nmap.",
     infrastructure:
       'Hyperviseurs VMware et Hyper-V, contrôleur de domaine Windows Server 2019, routage inter-VLAN et accès distant VPN.',
     stack: [
@@ -288,7 +286,6 @@ export const projects: Project[] = [
       'Hyper-V',
       'Windows Server 2019',
       'Active Directory',
-      'FortiGate',
       'pfSense',
       'VLAN',
       'Wireshark',
@@ -364,7 +361,7 @@ export const skillCategories: SkillCategory[] = [
     id: 'reseau-securite',
     title: 'Réseau & Sécurité',
     icon: ShieldCheck,
-    skills: ['Cisco', 'FortiGate', 'pfSense', 'VPN', 'Wireshark', 'Nmap', 'Pentest'],
+    skills: ['Cisco', 'pfSense', 'VPN', 'Wireshark', 'Nmap', 'Pentest'],
   },
   {
     id: 'systemes-virtualisation',
