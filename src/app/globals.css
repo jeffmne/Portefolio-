@@ -1,3 +1,15 @@
+/**
+ * Typage explicite de la progression de défilement. Sans `@property`, une
+ * variable sans unité placée dans un `calc()` à l'intérieur d'un `transform`
+ * est mal résolue par certaines versions de Safari — la scène reste alors
+ * figée alors que le script fonctionne.
+ */
+@property --p {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -170,8 +170,8 @@ export const hero = {
   /** Aplat décoratif du hero. Purement visuel : aucun texte n'y figure. */
   background: {
     src: '/images/hero-background.webp',
-    width: 1127,
-    height: 1396,
+    width: 2400,
+    height: 2973,
   },
   /** Portrait détouré (fond transparent), incrusté sur l'aplat du hero. */
   portrait: {
