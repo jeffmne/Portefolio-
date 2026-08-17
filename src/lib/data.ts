@@ -121,10 +121,11 @@ export const siteConfig = {
     'Active Directory',
   ],
   /**
-   * URL de production — à mettre à jour après le premier déploiement Vercel
-   * (utilisée pour les balises canonical et Open Graph).
+   * URL de production. Alimente `metadataBase`, la balise canonical,
+   * l'Open Graph et le sitemap — à réajuster le jour où un nom de domaine
+   * personnalisé remplacera l'adresse Vercel.
    */
-  url: 'https://portfolio-menie-milama.vercel.app',
+  url: 'https://rod-menie-milama.vercel.app',
   locale: 'fr_FR',
   cvPath: '/cv-menie-milama.pdf',
 } as const;
