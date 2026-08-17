@@ -30,17 +30,11 @@ export function ScrollScene({ children, className, span = 0.85 }: ScrollScenePro
     if (!node) return;
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    /**
-     * Sous 1024 px le hero occupe presque tout l'écran : y décaler les
-     * couches ferait chevaucher le portrait et le texte. La scène reste donc
-     * figée sur les petits écrans.
-     */
-    const wide = window.matchMedia('(min-width: 1024px)');
     let frame = 0;
 
     const update = () => {
       frame = 0;
-      if (reduced.matches || !wide.matches) {
+      if (reduced.matches) {
         node.style.setProperty('--p', '0');
         return;
       }
@@ -58,14 +52,12 @@ export function ScrollScene({ children, className, span = 0.85 }: ScrollScenePro
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
     reduced.addEventListener('change', update);
-    wide.addEventListener('change', update);
 
     return () => {
       if (frame) window.cancelAnimationFrame(frame);
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
       reduced.removeEventListener('change', update);
-      wide.removeEventListener('change', update);
     };
   }, [span]);
 

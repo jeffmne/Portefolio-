@@ -14,7 +14,10 @@ const STEP = 110;
 export function Hero() {
   return (
     <section id="top" className="pt-6 sm:pt-8">
-      <ScrollScene className="container">
+      {/* --shift neutralise, sous lg, les seuls décalages qui faisaient
+          chevaucher le portrait et le texte. L'échelle du bloc et la dérive
+          du fond, elles, jouent à toutes les tailles. */}
+      <ScrollScene className="container [--shift:0] lg:[--shift:1]">
         {/* Le bloc recule et s'efface a mesure qu'on defile : c'est lui qui
             donne la profondeur, les couches internes se decalent dessus. */}
         <div
@@ -47,7 +50,7 @@ export function Hero() {
           <div className="relative z-10 grid items-center gap-6 sm:gap-8 lg:grid-cols-12 lg:items-end lg:gap-14">
             <div
               className="lg:col-span-7"
-              style={{ transform: 'translateY(calc(var(--p) * -26px))' }}
+              style={{ transform: 'translateY(calc(var(--p) * var(--shift) * -26px))' }}
             >
               <p
                 className="inline-flex max-w-full items-center gap-2 rounded-full bg-white/15 px-3.5 py-1.5 font-mono text-[11px] backdrop-blur-sm motion-safe:animate-fade-in-up sm:text-xs"
@@ -149,7 +152,7 @@ export function Hero() {
               className="motion-safe:animate-fade-in-up lg:col-span-5 lg:-mb-20"
               style={{
                 animationDelay: `${STEP * 2.6}ms`,
-                transform: 'translateY(calc(var(--p) * -54px))',
+                transform: 'translateY(calc(var(--p) * var(--shift) * -54px))',
               }}
             >
               <div className="relative mx-auto flex w-fit items-end justify-center lg:ml-auto lg:mr-0 lg:w-full">
