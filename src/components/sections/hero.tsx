@@ -5,6 +5,7 @@ import { ArrowRight, Download, MapPin } from 'lucide-react';
 import { AccentWord } from '@/components/ui/accent-word';
 import { Button } from '@/components/ui/button';
 import { Marquee } from '@/components/ui/marquee';
+import { ScrollScene } from '@/components/ui/scroll-scene';
 import { hero, siteConfig } from '@/lib/data';
 
 /** Cascade d'apparition au chargement, en millisecondes. */
@@ -13,20 +14,40 @@ const STEP = 110;
 export function Hero() {
   return (
     <section id="top" className="pt-6 sm:pt-8">
-      <div className="container">
-        <div className="grain relative overflow-hidden rounded-lg bg-block-blue px-6 py-14 text-on-block shadow-2xl shadow-block-blue/25 sm:px-10 sm:py-16 lg:px-14 lg:py-20">
-          {/* Dégradés organiques : dessinés en CSS, aucune image importée. */}
+      <ScrollScene className="container">
+        {/* Le bloc recule et s'efface a mesure qu'on defile : c'est lui qui
+            donne la profondeur, les couches internes se decalent dessus. */}
+        <div
+          className="grain relative overflow-hidden rounded-lg bg-block-blue px-6 py-14 text-on-block shadow-2xl shadow-block-blue/25 will-change-transform sm:px-10 sm:py-16 lg:px-14 lg:py-20"
+          style={{
+            transformOrigin: 'top center',
+            transform: 'scale(calc(1 - var(--p) * 0.06)) translateY(calc(var(--p) * 18px))',
+            opacity: 'calc(1 - var(--p) * 0.28)',
+          }}
+        >
+          {/* Dégradés organiques : dessinés en CSS, aucune image importée.
+              Le conteneur porte la parallaxe, l'enfant garde sa dérive — les
+              deux transformations ne peuvent pas vivre sur le même élément. */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -bottom-1/3 -left-[18%] z-0 aspect-square w-[62%] rounded-[58%_42%_47%_53%/50%_56%_44%_50%] bg-[radial-gradient(circle_at_30%_30%,hsl(var(--block-rose)),transparent_62%),radial-gradient(circle_at_70%_70%,#5b34c4,transparent_60%)] opacity-70 blur-[6px] motion-safe:animate-drift"
-          />
+            className="pointer-events-none absolute -bottom-1/3 -left-[18%] z-0 w-[62%]"
+            style={{ transform: 'translateY(calc(var(--p) * 70px))' }}
+          >
+            <div className="aspect-square w-full rounded-[58%_42%_47%_53%/50%_56%_44%_50%] bg-[radial-gradient(circle_at_30%_30%,hsl(var(--block-rose)),transparent_62%),radial-gradient(circle_at_70%_70%,#5b34c4,transparent_60%)] opacity-70 blur-[6px] motion-safe:animate-drift" />
+          </div>
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -right-[12%] -top-[26%] z-0 aspect-[1.2] w-[48%] rounded-[44%_56%_52%_48%/48%_44%_56%_52%] bg-gradient-to-br from-peach to-block-rose opacity-60 blur-[6px] motion-safe:animate-drift-slow"
-          />
+            className="pointer-events-none absolute -right-[12%] -top-[26%] z-0 w-[48%]"
+            style={{ transform: 'translateY(calc(var(--p) * 46px))' }}
+          >
+            <div className="aspect-[1.2] w-full rounded-[44%_56%_52%_48%/48%_44%_56%_52%] bg-gradient-to-br from-peach to-block-rose opacity-60 blur-[6px] motion-safe:animate-drift-slow" />
+          </div>
 
           <div className="relative z-10 grid items-center gap-6 sm:gap-8 lg:grid-cols-12 lg:items-end lg:gap-14">
-            <div className="lg:col-span-7">
+            <div
+              className="lg:col-span-7"
+              style={{ transform: 'translateY(calc(var(--p) * -26px))' }}
+            >
               <p
                 className="inline-flex max-w-full items-center gap-2 rounded-full bg-white/15 px-3.5 py-1.5 font-mono text-[11px] backdrop-blur-sm motion-safe:animate-fade-in-up sm:text-xs"
                 style={{ animationDelay: `${STEP}ms` }}
@@ -125,7 +146,10 @@ export function Hero() {
              */}
             <div
               className="motion-safe:animate-fade-in-up lg:col-span-5 lg:-mb-20"
-              style={{ animationDelay: `${STEP * 2.6}ms` }}
+              style={{
+                animationDelay: `${STEP * 2.6}ms`,
+                transform: 'translateY(calc(var(--p) * -54px))',
+              }}
             >
               <div className="relative mx-auto flex w-fit items-end justify-center lg:ml-auto lg:mr-0 lg:w-full">
                 {/* Disque centré sur le buste, décalé à 43 % comme la silhouette. */}
@@ -154,7 +178,7 @@ export function Hero() {
         </div>
 
         <Marquee items={hero.marquee} className="mt-10 border-x-0" />
-      </div>
+      </ScrollScene>
 
       <span className="sr-only">{siteConfig.description}</span>
     </section>
