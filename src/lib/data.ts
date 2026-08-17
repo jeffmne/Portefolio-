@@ -165,11 +165,12 @@ export const hero = {
     "J'accompagne les entreprises dans la sécurisation de leur infrastructure IT, l'automatisation de leurs processus et la création de solutions web sur mesure.",
   primaryCta: { label: 'Demander un devis', href: '#contact' },
   secondaryCta: { label: 'Télécharger mon CV', href: siteConfig.cvPath },
+  /** Portrait détouré (fond transparent), incrusté sur l'aplat du hero. */
   portrait: {
-    src: '/images/menie-milama-rod.webp',
+    src: '/images/menie-milama-rod-cutout.webp',
     alt: 'Portrait de MENIE MILAMA Rod, ingénieur systèmes, réseaux et sécurité',
-    width: 1000,
-    height: 1250,
+    width: 900,
+    height: 1032,
   },
 } as const;
 

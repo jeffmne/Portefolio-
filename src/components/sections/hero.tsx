@@ -25,7 +25,7 @@ export function Hero() {
             className="pointer-events-none absolute -right-[12%] -top-[26%] z-0 aspect-[1.2] w-[48%] rounded-[44%_56%_52%_48%/48%_44%_56%_52%] bg-gradient-to-br from-peach to-block-rose opacity-60 blur-[6px] motion-safe:animate-drift-slow"
           />
 
-          <div className="relative z-10 grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
+          <div className="relative z-10 grid items-center gap-10 lg:grid-cols-12 lg:items-end lg:gap-14">
             <div className="lg:col-span-7">
               <p
                 className="inline-flex max-w-full items-center gap-2 rounded-full bg-white/15 px-3.5 py-1.5 font-mono text-[11px] backdrop-blur-sm motion-safe:animate-fade-in-up sm:text-xs"
@@ -118,18 +118,28 @@ export function Hero() {
             </div>
 
             <div
-              className="motion-safe:animate-fade-in-up lg:col-span-5"
+              className="motion-safe:animate-fade-in-up lg:col-span-5 lg:-mb-20"
               style={{ animationDelay: `${STEP * 2.6}ms` }}
             >
-              <div className="mx-auto w-full max-w-[16rem] sm:max-w-xs lg:ml-auto lg:mr-0 lg:max-w-none">
+              {/* Incrustation : le portrait détouré se détache d'un disque
+                  d'accent et déborde par le haut, ce qui lui donne du relief. */}
+              <div className="relative mx-auto flex w-full max-w-[17rem] items-end justify-center sm:max-w-xs lg:ml-auto lg:mr-0 lg:max-w-md">
+                <span
+                  aria-hidden="true"
+                  className="absolute bottom-[12%] left-1/2 aspect-square w-[86%] -translate-x-1/2 rounded-full bg-gradient-to-br from-white/25 to-white/5 backdrop-blur-[1px]"
+                />
+                <span
+                  aria-hidden="true"
+                  className="absolute bottom-[18%] left-1/2 aspect-square w-[72%] -translate-x-1/2 rounded-full border border-white/25"
+                />
                 <Image
                   src={hero.portrait.src}
                   alt={hero.portrait.alt}
                   width={hero.portrait.width}
                   height={hero.portrait.height}
                   priority
-                  sizes="(max-width: 640px) 256px, (max-width: 1024px) 320px, 400px"
-                  className="w-full rounded-md object-cover shadow-2xl shadow-black/25"
+                  sizes="(max-width: 640px) 272px, (max-width: 1024px) 320px, 384px"
+                  className="relative w-full drop-shadow-[0_26px_40px_rgba(0,0,0,0.4)]"
                 />
               </div>
             </div>
