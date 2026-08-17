@@ -1,8 +1,19 @@
 import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
 
 const config: Config = {
   darkMode: ['class'],
   content: ['./src/**/*.{ts,tsx}'],
+  future: {
+    /**
+     * Sur écran tactile, un doigt qui effleure un élément pendant le
+     * défilement déclenche `:hover` — et l'état reste souvent collé. Cette
+     * option compile toutes les variantes `hover:` derrière
+     * `@media (hover: hover)` : les effets de survol ne concernent plus que
+     * les pointeurs qui survolent réellement.
+     */
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     container: {
       center: true,
@@ -121,7 +132,21 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    require('tailwindcss-animate'),
+    /**
+     * `hoverOnlyWhenSupported` ne protège que la variante `hover:` — pas
+     * `group-hover:`. Cette variante comble le manque : elle n'applique
+     * l'effet que sur un pointeur qui survole réellement, ce qui évite qu'un
+     * doigt effleurant un élément pendant le défilement le déclenche.
+     */
+    plugin(({ addVariant }) => {
+      addVariant(
+        'group-hover-fine',
+        '@media (hover: hover) and (pointer: fine) { :merge(.group):hover & }',
+      );
+    }),
+  ],
 };
 
 export default config;
