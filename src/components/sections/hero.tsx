@@ -134,11 +134,11 @@ export function Hero() {
               </div>
 
               <p
-                className="mt-7 flex items-center gap-2 text-sm text-white/75 motion-safe:animate-fade-in-up"
+                className="mt-7 flex items-center justify-center gap-2 text-sm text-white/75 motion-safe:animate-fade-in-up"
                 style={{ animationDelay: `${STEP * 5.8}ms` }}
               >
                 <MapPin className="h-4 w-4 shrink-0" aria-hidden="true" />
-                Gabon — missions sur site et à distance
+                {hero.location}
               </p>
             </div>
 

@@ -166,6 +166,7 @@ export const hero = {
     "J'accompagne les entreprises dans la sécurisation de leur infrastructure IT, l'automatisation de leurs processus et la création de solutions web sur mesure.",
   primaryCta: { label: 'Demander un devis', href: '#contact' },
   secondaryCta: { label: 'Télécharger mon CV', href: siteConfig.cvPath },
+  location: 'Libreville - Gabon',
   /** Aplat décoratif du hero. Purement visuel : aucun texte n'y figure. */
   background: {
     src: '/images/hero-background.webp',
