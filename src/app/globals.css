@@ -175,24 +175,35 @@
    * entre a son tour une fois le bloc parent passe a `data-revealed`, decale
    * par son index `--i` et le pas `--stagger` fixe par la liste.
    *
+   * Une animation, et non une transition : la propriete `transition` reste
+   * ainsi disponible pour l'element lui-meme. Une regle de transition posee
+   * ici ecraserait le `transition-colors` des lignes de service, dont le
+   * survol deviendrait instantane.
+   *
    * L'etat masque est conditionne a `prefers-reduced-motion: no-preference`,
    * comme la variante `motion-safe` du bloc parent : sans cette garde, un
    * visiteur ayant reduit les animations verrait des enfants restes a
    * `opacity: 0`, la neutralisation globale ne portant que sur les durees.
    */
+  @keyframes reveal-item {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   @media (prefers-reduced-motion: no-preference) {
     [data-reveal] [data-reveal-item] {
       opacity: 0;
-      transform: translateY(6px);
-      transition:
-        opacity 400ms ease-out,
-        transform 400ms ease-out;
-      transition-delay: calc(var(--i, 0) * var(--stagger, 55ms));
     }
 
     [data-reveal][data-revealed] [data-reveal-item] {
-      opacity: 1;
-      transform: none;
+      animation: reveal-item 400ms ease-out both;
+      animation-delay: calc(var(--i, 0) * var(--stagger, 55ms));
     }
   }
 

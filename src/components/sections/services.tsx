@@ -14,9 +14,12 @@ export function Services() {
           description="Cinq domaines d'intervention complémentaires, de la couche réseau jusqu'à l'application métier — pour des prestations ponctuelles ou des accompagnements au long cours."
         />
 
+        {/* Aucun decalage : la liste est sur une seule colonne, c'est le
+            defilement lui-meme qui fait entrer les lignes l'une apres
+            l'autre. */}
         <div className="mt-12 border-t border-border">
-          {services.map((service, index) => (
-            <Reveal key={service.id} delay={index * 60}>
+          {services.map((service) => (
+            <Reveal key={service.id} rootMargin="0px 0px -18% 0px">
               <ServiceCard service={service} />
             </Reveal>
           ))}
