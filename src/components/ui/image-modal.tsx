@@ -11,6 +11,13 @@ import type { ProjectImage } from '@/lib/data';
 interface ImageModalProps {
   images: ProjectImage[];
   className?: string;
+  /**
+   * `grid` affiche la grille de miniatures ; `button` ne pose qu'un bouton
+   * d'ouverture, pour les contextes où la grille surchargerait la mise en page.
+   */
+  variant?: 'grid' | 'button';
+  /** Libellé du bouton en variante `button`. */
+  triggerLabel?: string;
 }
 
 /**
@@ -20,7 +27,12 @@ interface ImageModalProps {
  * l'arriere-plan sont assures par la primitive Dialog de Radix ; la navigation
  * gauche/droite au clavier est ajoutee ici.
  */
-export function ImageModal({ images, className }: ImageModalProps) {
+export function ImageModal({
+  images,
+  className,
+  variant = 'grid',
+  triggerLabel = 'Voir les captures',
+}: ImageModalProps) {
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
 
   const isOpen = activeIndex !== null;
@@ -51,7 +63,28 @@ export function ImageModal({ images, className }: ImageModalProps) {
 
   return (
     <>
-      <ul className={cn('grid gap-3 sm:grid-cols-2 lg:grid-cols-3', className)}>
+      {variant === 'button' ? (
+        <button
+          type="button"
+          onClick={() => setActiveIndex(0)}
+          className={cn(
+            'inline-flex items-center gap-2 rounded-full bg-white/15 px-5 py-2.5 text-sm font-semibold text-white ring-offset-background backdrop-blur-sm transition-[background-color,transform] duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white',
+            className,
+          )}
+        >
+          <Maximize2 className="h-4 w-4" aria-hidden="true" />
+          {triggerLabel}
+          <span className="font-mono text-xs opacity-70">{images.length}</span>
+        </button>
+      ) : null}
+
+      <ul
+        className={cn(
+          'grid gap-3 sm:grid-cols-2 lg:grid-cols-3',
+          variant === 'button' && 'hidden',
+          className,
+        )}
+      >
         {images.map((image, index) => (
           <li key={image.src}>
             <button

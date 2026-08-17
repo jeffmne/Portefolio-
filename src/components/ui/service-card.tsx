@@ -1,32 +1,46 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { SkillBadge } from '@/components/ui/skill-badge';
+import { ArrowUpRight } from 'lucide-react';
+
 import type { Service } from '@/lib/data';
 
 interface ServiceCardProps {
   service: Service;
 }
 
+/**
+ * Une ligne de service : filet de séparation, flèche circulaire, et un aplat
+ * accent qui monte depuis le bas au survol.
+ */
 export function ServiceCard({ service }: ServiceCardProps) {
   const Icon = service.icon;
 
   return (
-    <Card className="group flex h-full flex-col transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-primary/50">
-      <CardHeader className="gap-3">
-        <span className="flex h-11 w-11 items-center justify-center rounded-md border border-border bg-muted/60 text-primary transition-colors duration-300 group-hover:border-primary/40">
+    <a
+      href="#contact"
+      className="group relative flex items-center justify-between gap-5 overflow-hidden border-b border-border px-2 py-6 ring-offset-background transition-[padding,color] duration-500 ease-smooth hover:px-5 hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:py-8"
+    >
+      <span
+        aria-hidden="true"
+        className="absolute inset-0 z-0 translate-y-full bg-primary transition-transform duration-500 ease-smooth group-hover:translate-y-0"
+      />
+
+      <span className="relative z-10 flex min-w-0 items-start gap-4">
+        <span className="mt-0.5 shrink-0 text-primary transition-colors duration-500 ease-smooth group-hover:text-primary-foreground">
           <Icon className="h-5 w-5" aria-hidden="true" />
         </span>
-        <CardTitle className="text-base sm:text-lg">{service.title}</CardTitle>
-        <CardDescription>{service.description}</CardDescription>
-      </CardHeader>
-      <CardContent className="mt-auto">
-        <ul className="flex flex-wrap gap-2">
-          {service.tags.map((tag) => (
-            <li key={tag}>
-              <SkillBadge label={tag} />
-            </li>
-          ))}
-        </ul>
-      </CardContent>
-    </Card>
+        <span className="min-w-0">
+          <span className="block text-lg font-bold tracking-tight sm:text-xl">{service.title}</span>
+          <span className="mt-1.5 block max-w-[52ch] text-sm leading-relaxed text-muted-foreground transition-colors duration-500 ease-smooth group-hover:text-primary-foreground/80">
+            {service.description}
+          </span>
+          <span className="mt-2.5 block font-mono text-[11px] uppercase tracking-wider text-muted-foreground transition-colors duration-500 ease-smooth group-hover:text-primary-foreground/70">
+            {service.tags.join(' · ')}
+          </span>
+        </span>
+      </span>
+
+      <span className="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-secondary text-primary transition-[background-color,color,transform] duration-500 ease-smooth group-hover:translate-x-1 group-hover:bg-card group-hover:text-primary">
+        <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
+      </span>
+    </a>
   );
 }

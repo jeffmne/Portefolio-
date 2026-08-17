@@ -144,7 +144,22 @@ export const navLinks: NavLink[] = [
 
 export const hero = {
   eyebrow: 'Disponible pour missions freelance et opportunités CDI',
+  greeting: 'Bonjour,',
   heading: 'Ingénieur Systèmes, Réseaux & Sécurité',
+  /** Découpage du H1 pour la révélation ligne à ligne ; le dernier mot est accentué. */
+  headingLines: ['Ingénieur Systèmes,', 'Réseaux &'],
+  headingAccent: 'Sécurité',
+  /** Bandeau défilant sous le hero. */
+  marquee: [
+    'FortiGate',
+    'pfSense',
+    'Active Directory',
+    'Laravel',
+    'VMware',
+    'Nmap',
+    'Cisco',
+    'Next.js',
+  ],
   subheading: 'Consultant en Digitalisation & Développeur Web',
   paragraph:
     "J'accompagne les entreprises dans la sécurisation de leur infrastructure IT, l'automatisation de leurs processus et la création de solutions web sur mesure.",

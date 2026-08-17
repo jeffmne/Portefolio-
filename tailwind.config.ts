@@ -29,7 +29,15 @@ const config: Config = {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
+          deep: 'hsl(var(--primary-deep))',
         },
+        peach: 'hsl(var(--peach))',
+        block: {
+          blue: 'hsl(var(--block-blue))',
+          rose: 'hsl(var(--block-rose))',
+          ink: 'hsl(var(--block-ink))',
+        },
+        'on-block': 'hsl(var(--on-block))',
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
@@ -52,12 +60,16 @@ const config: Config = {
       },
       borderRadius: {
         lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        md: 'calc(var(--radius) - 0.75rem)',
+        sm: 'calc(var(--radius) - 1.25rem)',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['var(--font-jetbrains-mono)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        serif: ['var(--font-instrument-serif)', 'Georgia', 'serif'],
+      },
+      transitionTimingFunction: {
+        smooth: 'cubic-bezier(0.22, 0.68, 0.24, 1)',
       },
       keyframes: {
         'accordion-down': {
@@ -81,6 +93,20 @@ const config: Config = {
           '0%': { transform: 'scale(0.85)', opacity: '0.6' },
           '70%, 100%': { transform: 'scale(2.4)', opacity: '0' },
         },
+        // Ligne de titre qui monte depuis derriere son cache
+        'rise-line': {
+          from: { opacity: '0', transform: 'translateY(105%)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        // Derive tres lente des degrades organiques du hero
+        drift: {
+          '0%, 100%': { transform: 'translate3d(0, 0, 0) rotate(0deg)' },
+          '50%': { transform: 'translate3d(3%, -4%, 0) rotate(9deg)' },
+        },
+        // Bandeau technologique
+        marquee: {
+          to: { transform: 'translateX(-50%)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -88,6 +114,10 @@ const config: Config = {
         'fade-in-up': 'fade-in-up 0.6s ease-out both',
         'fade-in': 'fade-in 0.8s ease-out both',
         'pulse-ring': 'pulse-ring 2.8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'rise-line': 'rise-line 0.85s cubic-bezier(0.22, 0.68, 0.24, 1) both',
+        drift: 'drift 22s ease-in-out infinite',
+        'drift-slow': 'drift 27s ease-in-out infinite reverse',
+        marquee: 'marquee 30s linear infinite',
       },
     },
   },

@@ -5,50 +5,69 @@
 @layer base {
   /* Light Mode */
   :root {
-    --background: 0 0% 98%;
-    --foreground: 240 10% 3.9%;
+    --background: 250 27% 95%;
+    --foreground: 197 86% 14%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 197 86% 14%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 221.2 83.2% 53.3%;
+    --popover-foreground: 197 86% 14%;
+    --primary: 221 83% 54%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
+    --primary-deep: 224 71% 36%;
+    --secondary: 250 22% 91%;
+    --secondary-foreground: 197 86% 14%;
+    --muted: 250 22% 91%;
+    --muted-foreground: 200 16% 42%;
+    --accent: 344 66% 63%;
+    --accent-foreground: 0 0% 100%;
+    --peach: 30 82% 68%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
+    --border: 252 21% 88%;
+    --input: 252 21% 88%;
+    --ring: 221 83% 54%;
+    --radius: 1.75rem;
+
+    /**
+     * Aplats de marque. Contrairement à --primary / --accent, qui s'adaptent au
+     * thème pour rester lisibles en petit, ces fonds restent assez profonds
+     * dans les deux thèmes pour porter du texte blanc.
+     */
+    --block-blue: 221 83% 54%;
+    --block-rose: 344 60% 58%;
+    --block-ink: 197 86% 14%;
+    --on-block: 0 0% 100%;
   }
 
-  /* Dark Mode (defaut) */
+  /* Dark Mode */
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    /* Rouge plus lumineux que la valeur shadcn par defaut : lisible sur fond sombre */
-    --destructive: 0 72.2% 50.6%;
+    --background: 197 68% 8%;
+    --foreground: 197 30% 92%;
+    --card: 199 58% 13%;
+    --card-foreground: 197 30% 92%;
+    --popover: 199 58% 13%;
+    --popover-foreground: 197 30% 92%;
+    --primary: 219 87% 66%;
+    --primary-foreground: 199 70% 10%;
+    --primary-deep: 222 71% 56%;
+    --secondary: 199 47% 18%;
+    --secondary-foreground: 197 30% 92%;
+    --muted: 199 47% 18%;
+    --muted-foreground: 200 15% 64%;
+    --accent: 340 68% 70%;
+    --accent-foreground: 199 70% 10%;
+    --peach: 28 68% 66%;
+    --destructive: 0 72% 55%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 217.2 91.2% 59.8%;
+    --border: 200 47% 20%;
+    --input: 200 47% 20%;
+    --ring: 219 87% 66%;
+
+    /* Légèrement assombris pour que le blanc tienne sur fond sombre. */
+    --block-blue: 224 74% 46%;
+    --block-rose: 344 52% 48%;
+    --block-ink: 199 62% 11%;
+    --on-block: 0 0% 100%;
   }
 }
 
@@ -62,7 +81,6 @@
     font-feature-settings:
       'rlig' 1,
       'calt' 1;
-    /* Bascule de theme adoucie */
     transition:
       background-color 300ms ease,
       color 300ms ease;
@@ -70,12 +88,10 @@
 
   html {
     scroll-behavior: smooth;
-    /* Compense le header sticky lors du scroll vers une ancre */
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 6rem;
   }
 
-  /* Respect strict de la preference systeme : plus aucune animation ni
-     transition n'est jouee, y compris celles des composants Radix. */
+  /* Respect strict de la preference systeme. */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -91,31 +107,76 @@
   }
 
   ::selection {
-    @apply bg-primary/25;
+    @apply bg-accent/30;
+  }
+}
+
+@layer components {
+  /**
+   * Mot mis en valeur : serif italique souligne d'un trait qui se trace.
+   * Le trait n'apparait qu'une fois l'element revele (classe `.is-drawn`).
+   */
+  .accent-word {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+    padding-inline: 0.06em;
+    font-family: var(--font-instrument-serif), Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .accent-word::after {
+    content: '';
+    position: absolute;
+    left: -0.04em;
+    right: -0.1em;
+    bottom: 0.02em;
+    height: 0.075em;
+    border-radius: 999px;
+    background-color: currentColor;
+    transform: rotate(-0.8deg) scaleX(0);
+    transform-origin: left center;
+    transition: transform 700ms cubic-bezier(0.22, 0.68, 0.24, 1) 350ms;
+  }
+
+  .accent-word.is-drawn::after {
+    transform: rotate(-0.8deg) scaleX(1);
   }
 }
 
 @layer utilities {
-  /* Grille technique subtile utilisee en arriere-plan du hero */
+  /* Le grain : c'est lui qui donne sa matiere aux aplats colores. */
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.38;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Revelation par masque : la ligne monte derriere son propre cache. */
+  .mask-line {
+    display: block;
+    overflow: hidden;
+  }
+
   .bg-grid-pattern {
     background-image:
-      linear-gradient(to right, hsl(var(--foreground) / 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--foreground) / 0.06) 1px, transparent 1px);
+      linear-gradient(to right, hsl(var(--foreground) / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--foreground) / 0.05) 1px, transparent 1px);
     background-size: 56px 56px;
   }
 
-  .bg-dot-pattern {
-    background-image: radial-gradient(hsl(var(--foreground) / 0.12) 1px, transparent 1px);
-    background-size: 22px 22px;
-  }
-
-  /* Souligne anime des liens de navigation */
   .link-underline::after {
     content: '';
     position: absolute;
     left: 0.75rem;
     right: 0.75rem;
-    bottom: 0.25rem;
+    bottom: 0.3rem;
     height: 1px;
     background-color: hsl(var(--primary));
     transform: scaleX(0);

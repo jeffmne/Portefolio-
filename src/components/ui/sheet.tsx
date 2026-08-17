@@ -49,22 +49,27 @@ const sheetVariants = cva(
 interface SheetContentProps
   extends
     React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
-    VariantProps<typeof sheetVariants> {}
+    VariantProps<typeof sheetVariants> {
+  /** Masque le bouton de fermeture par défaut (pour un en-tête sur-mesure). */
+  showCloseButton?: boolean;
+}
 
 const SheetContent = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Content>,
   SheetContentProps
->(({ side = 'right', className, children, ...props }, ref) => (
+>(({ side = 'right', className, children, showCloseButton = true, ...props }, ref) => (
   <SheetPortal>
     <SheetOverlay />
     <SheetPrimitive.Content ref={ref} className={cn(sheetVariants({ side }), className)} {...props}>
       {children}
-      <SheetPrimitive.Close
-        className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity duration-200 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-        aria-label="Fermer le menu"
-      >
-        <X className="h-5 w-5" aria-hidden="true" />
-      </SheetPrimitive.Close>
+      {showCloseButton ? (
+        <SheetPrimitive.Close
+          className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity duration-200 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          aria-label="Fermer le menu"
+        >
+          <X className="h-5 w-5" aria-hidden="true" />
+        </SheetPrimitive.Close>
+      ) : null}
     </SheetPrimitive.Content>
   </SheetPortal>
 ));

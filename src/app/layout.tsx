@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Instrument_Serif, Inter, JetBrains_Mono } from 'next/font/google';
 
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
@@ -16,6 +16,15 @@ const inter = Inter({
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-jetbrains-mono',
+  display: 'swap',
+});
+
+/** Réservée aux mots mis en valeur (`.accent-word`). */
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: 'italic',
+  variable: '--font-instrument-serif',
   display: 'swap',
 });
 
@@ -67,7 +76,7 @@ export default function RootLayout({
     <html
       lang="fr"
       suppressHydrationWarning
-      className={`${inter.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable}`}
     >
       <body className="min-h-screen font-sans">
         {/* Sans JavaScript, l'observateur d'intersection ne s'execute pas :
