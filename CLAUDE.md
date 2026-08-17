@@ -91,6 +91,7 @@ Principe directeur : **l'animation souligne la structure, elle ne la décore pas
 | ------------------------ | ------------------------------------------------------------------------------------ |
 | Entrée du hero           | `animate-fade-in-up` en cascade, décalage de 90 ms par bloc (`STEP` dans `hero.tsx`) |
 | Apparition au défilement | `<Reveal>` — IntersectionObserver, déclenché une seule fois, `delay` pour la cascade |
+| Cascade interne          | `data-reveal-item` + `--i` / `--stagger` — enfants révélés un à un (voir ci-dessous) |
 | Survol des cartes        | Élévation légère (`-translate-y-1`) et bordure accent — rien d'autre                 |
 | Header                   | Passe de 64 à 56 px au défilement, bordure et ombre révélées                         |
 | Liens de navigation      | Souligné `.link-underline` déployé depuis la gauche                                  |
@@ -104,7 +105,20 @@ Principe directeur : **l'animation souligne la structure, elle ne la décore pas
 1. Les états masqués ne sont appliqués qu'avec la variante `motion-safe:` — un visiteur ayant réduit les animations voit le contenu immédiatement, sans dépendre de JavaScript.
 2. `globals.css` neutralise globalement `animation-duration` et `transition-duration`, y compris pour les animations internes de Radix.
 
-Sans JavaScript, une règle `<noscript>` dans `layout.tsx` réaffiche les blocs `[data-reveal]`.
+Sans JavaScript, une règle `<noscript>` dans `layout.tsx` réaffiche les blocs `[data-reveal]` **et** `[data-reveal-item]`.
+
+### Révélation séquentielle (Compétences, Expérience)
+
+Deux mécanismes se combinent pour que les éléments entrent un à un au fil du défilement.
+
+**1. La ligne de déclenchement.** `<Reveal>` accepte un `rootMargin` (défaut `0px 0px -32px 0px`, inchangé partout ailleurs). Les cartes de ces deux sections utilisent `0px 0px -18% 0px` : elles n'apparaissent qu'une fois franchement entrées dans le viewport, si bien que c'est le défilement — et non un minuteur — qui les séquence. Conséquence sur les décalages :
+
+- **Expérience** — liste sur une colonne, donc `delay` à zéro : chaque poste apparaît quand il franchit la ligne.
+- **Compétences** — grille à deux colonnes à partir de `md`, où les deux cartes d'une rangée franchissent la ligne ensemble. Seul `(index % 2) * 90` les départage ; les rangées, elles, restent séquencées par le défilement.
+
+**2. La cascade interne.** Un bloc révélé porte `data-revealed`. Les enfants marqués `data-reveal-item` entrent alors à leur tour, décalés par `calc(var(--i) * var(--stagger))` — `--i` étant l'index posé en style inline, `--stagger` le pas fixé sur la liste (`[--stagger:40ms]` pour les badges de compétences, `[--stagger:70ms]` pour les missions d'une expérience). Tout est en CSS : aucun composant client supplémentaire, les sections restent des Server Components.
+
+L'état masqué de ces enfants est enfermé dans `@media (prefers-reduced-motion: no-preference)`, en écho à la variante `motion-safe:` du bloc parent. Sans cette garde, la neutralisation globale ne portant que sur les durées, un visiteur ayant réduit les animations verrait des enfants figés à `opacity: 0`.
 
 ---
 

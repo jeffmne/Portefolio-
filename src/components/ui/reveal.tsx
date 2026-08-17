@@ -9,6 +9,13 @@ interface RevealProps {
   /** Decalage d'apparition, en millisecondes, pour les effets en cascade. */
   delay?: number;
   className?: string;
+  /**
+   * Ligne de declenchement de l'observateur. Une marge basse negative retarde
+   * l'apparition jusqu'a ce que le bloc soit franchement entre dans le
+   * viewport : les elements d'une meme liste se revelent alors l'un apres
+   * l'autre au fil du defilement, au lieu de surgir ensemble des le bord bas.
+   */
+  rootMargin?: string;
 }
 
 /**
@@ -18,8 +25,19 @@ interface RevealProps {
  * L'etat masque n'est applique que via la variante `motion-safe` : si le
  * visiteur a demande la reduction des animations, le contenu est visible
  * immediatement, sans dependre de JavaScript.
+ *
+ * Une fois revele, le bloc porte `data-revealed` : les enfants marques
+ * `data-reveal-item` s'en servent pour entrer a leur tour, en cascade
+ * (regles dans `globals.css`).
  */
-export function Reveal({ children, delay = 0, className }: RevealProps) {
+export function Reveal({
+  children,
+  delay = 0,
+  className,
+  // Marge en pixels plutot qu'en pourcentage par defaut : le declenchement
+  // reste fiable sur les viewports courts (mobiles en paysage).
+  rootMargin = '0px 0px -32px 0px',
+}: RevealProps) {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = React.useState(false);
 
@@ -39,19 +57,18 @@ export function Reveal({ children, delay = 0, className }: RevealProps) {
           }
         }
       },
-      // Marge en pixels plutot qu'en pourcentage : le declenchement reste
-      // fiable sur les viewports courts (mobiles en paysage).
-      { threshold: 0.05, rootMargin: '0px 0px -32px 0px' },
+      { threshold: 0.05, rootMargin },
     );
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, []);
+  }, [rootMargin]);
 
   return (
     <div
       ref={ref}
       data-reveal=""
+      data-revealed={visible ? '' : undefined}
       style={{ transitionDelay: `${delay}ms` }}
       className={cn(
         'transition-[opacity,transform] duration-500 ease-out motion-safe:translate-y-3 motion-safe:opacity-0',

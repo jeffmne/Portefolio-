@@ -18,7 +18,10 @@ export function Experience() {
         <ol className="mt-10 space-y-5 lg:mt-12">
           {experiences.map((experience, index) => (
             <li key={experience.id}>
-              <Reveal delay={index * 80}>
+              {/* Aucun decalage : la liste est sur une seule colonne, c'est le
+                  defilement lui-meme qui fait entrer les postes l'un apres
+                  l'autre. */}
+              <Reveal rootMargin="0px 0px -18% 0px">
                 <Card className="group transition-[transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-primary/40">
                   <CardContent className="p-5 sm:p-6">
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
@@ -48,10 +51,13 @@ export function Experience() {
                       </p>
                     </div>
 
-                    <ul className="mt-4 space-y-2 sm:mt-5 sm:pl-[3.25rem]">
-                      {experience.highlights.map((highlight) => (
+                    {/* Les missions entrent une a une une fois la carte revelee. */}
+                    <ul className="mt-4 space-y-2 [--stagger:70ms] sm:mt-5 sm:pl-[3.25rem]">
+                      {experience.highlights.map((highlight, position) => (
                         <li
                           key={highlight}
+                          data-reveal-item=""
+                          style={{ '--i': position } as React.CSSProperties}
                           className="relative pl-5 text-sm leading-relaxed text-muted-foreground"
                         >
                           <span

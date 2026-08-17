@@ -19,7 +19,10 @@ export function Skills() {
             const Icon = category.icon;
             return (
               <li key={category.id}>
-                <Reveal className="h-full" delay={index * 70}>
+                {/* Le defilement seul sequence les rangees ; le decalage ne
+                    sert qu'a departager les deux colonnes d'une meme rangee,
+                    qui franchissent la ligne de declenchement ensemble. */}
+                <Reveal className="h-full" delay={(index % 2) * 90} rootMargin="0px 0px -18% 0px">
                   <Card className="group h-full transition-[transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-primary/40">
                     <CardHeader className="flex-row items-center gap-3 space-y-0">
                       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-border bg-muted/60 text-primary transition-colors duration-300 group-hover:border-primary/40">
@@ -28,9 +31,14 @@ export function Skills() {
                       <CardTitle className="text-base">{category.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <ul className="flex flex-wrap gap-2">
-                        {category.skills.map((skill) => (
-                          <li key={skill}>
+                      {/* Les badges entrent un a un une fois la carte revelee. */}
+                      <ul className="flex flex-wrap gap-2 [--stagger:40ms]">
+                        {category.skills.map((skill, position) => (
+                          <li
+                            key={skill}
+                            data-reveal-item=""
+                            style={{ '--i': position } as React.CSSProperties}
+                          >
                             <SkillBadge label={skill} />
                           </li>
                         ))}

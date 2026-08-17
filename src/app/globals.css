@@ -170,6 +170,32 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
+  /**
+   * Cascade interne d'un bloc revele. Chaque enfant marque `data-reveal-item`
+   * entre a son tour une fois le bloc parent passe a `data-revealed`, decale
+   * par son index `--i` et le pas `--stagger` fixe par la liste.
+   *
+   * L'etat masque est conditionne a `prefers-reduced-motion: no-preference`,
+   * comme la variante `motion-safe` du bloc parent : sans cette garde, un
+   * visiteur ayant reduit les animations verrait des enfants restes a
+   * `opacity: 0`, la neutralisation globale ne portant que sur les durees.
+   */
+  @media (prefers-reduced-motion: no-preference) {
+    [data-reveal] [data-reveal-item] {
+      opacity: 0;
+      transform: translateY(6px);
+      transition:
+        opacity 400ms ease-out,
+        transform 400ms ease-out;
+      transition-delay: calc(var(--i, 0) * var(--stagger, 55ms));
+    }
+
+    [data-reveal][data-revealed] [data-reveal-item] {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   /* Revelation par masque : la ligne monte derriere son propre cache. */
   .mask-line {
     display: block;
