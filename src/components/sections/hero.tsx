@@ -25,22 +25,23 @@ export function Hero() {
             opacity: 'calc(1 - var(--p) * 0.28)',
           }}
         >
-          {/* Dégradés organiques : dessinés en CSS, aucune image importée.
-              Le conteneur porte la parallaxe, l'enfant garde sa dérive — les
-              deux transformations ne peuvent pas vivre sur le même élément. */}
+          {/* Aplat décoratif : il porte désormais les formes, les blobs CSS
+              n'ont plus lieu d'être. Il dérive plus lentement que le contenu. */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -bottom-1/3 -left-[18%] z-0 w-[62%]"
-            style={{ transform: 'translateY(calc(var(--p) * 70px))' }}
+            className="pointer-events-none absolute inset-0 z-0"
+            style={{
+              transform: 'translateY(calc(var(--p) * 56px)) scale(calc(1 + var(--p) * 0.06))',
+            }}
           >
-            <div className="aspect-square w-full rounded-[58%_42%_47%_53%/50%_56%_44%_50%] bg-[radial-gradient(circle_at_30%_30%,hsl(var(--block-rose)),transparent_62%),radial-gradient(circle_at_70%_70%,#5b34c4,transparent_60%)] opacity-70 blur-[6px] motion-safe:animate-drift" />
-          </div>
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-[12%] -top-[26%] z-0 w-[48%]"
-            style={{ transform: 'translateY(calc(var(--p) * 46px))' }}
-          >
-            <div className="aspect-[1.2] w-full rounded-[44%_56%_52%_48%/48%_44%_56%_52%] bg-gradient-to-br from-peach to-block-rose opacity-60 blur-[6px] motion-safe:animate-drift-slow" />
+            <Image
+              src={hero.background.src}
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
           </div>
 
           <div className="relative z-10 grid items-center gap-6 sm:gap-8 lg:grid-cols-12 lg:items-end lg:gap-14">
@@ -152,15 +153,6 @@ export function Hero() {
               }}
             >
               <div className="relative mx-auto flex w-fit items-end justify-center lg:ml-auto lg:mr-0 lg:w-full">
-                {/* Disque centré sur le buste, décalé à 43 % comme la silhouette. */}
-                <span
-                  aria-hidden="true"
-                  className="absolute bottom-[8%] left-[43%] aspect-square w-[135%] -translate-x-1/2 rounded-full bg-gradient-to-br from-white/25 to-white/5 backdrop-blur-[1px] lg:w-[92%]"
-                />
-                <span
-                  aria-hidden="true"
-                  className="absolute bottom-[14%] left-[43%] aspect-square w-[112%] -translate-x-1/2 rounded-full border border-white/25 lg:w-[76%]"
-                />
                 <Image
                   src={hero.portrait.src}
                   alt={hero.portrait.alt}
