@@ -144,7 +144,7 @@ export const navLinks: NavLink[] = [
 
 export const hero = {
   eyebrow: 'Disponible pour missions freelance et opportunités CDI',
-  greeting: 'Bonjour,',
+  greeting: 'Bonjour, je suis MENIE MILAMA Rod',
   heading: 'Ingénieur Systèmes, Réseaux & Sécurité',
   /** Découpage du H1 pour la révélation ligne à ligne ; le dernier mot est accentué. */
   headingLines: ['Ingénieur Systèmes,', 'Réseaux &'],
