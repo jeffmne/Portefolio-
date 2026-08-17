@@ -38,6 +38,8 @@ export interface Experience {
   id: string;
   role: string;
   organisation: string;
+  /** Groupe auquel l'organisation appartient, le cas échéant. */
+  group?: string;
   period: string;
   highlights: string[];
 }
@@ -47,6 +49,8 @@ export interface Project {
   title: string;
   /** Structure au sein de laquelle le projet a été mené. */
   organisation?: string;
+  /** Groupe auquel cette structure appartient, le cas échéant. */
+  group?: string;
   /** Cadre de l'intervention (stage, mission freelance, projet personnel…). */
   context?: string;
   summary: string;
@@ -239,6 +243,7 @@ export const projects: Project[] = [
     id: 'cmdb',
     title: 'Plateforme CMDB & Nomenclature de Parc IT',
     organisation: 'KOMO Gestion Groupe',
+    group: 'Groupe SOGAFRIC',
     context: "Stage d'ingénieur Systèmes & Réseaux",
     summary:
       'Application web sur mesure de gestion et de cartographie du parc informatique, avec génération automatique de la nomenclature des postes.',
@@ -313,6 +318,7 @@ export const experiences: Experience[] = [
     id: 'komo',
     role: 'Stagiaire Ingénieur Systèmes & Réseaux',
     organisation: 'KOMO Gestion Groupe',
+    group: 'Groupe SOGAFRIC',
     /**
      * TODO : compléter la période. Le CV indique « 03/2026 - 05/20XX » :
      * la date de fin y est restée à l'état de gabarit. On n'affiche donc que

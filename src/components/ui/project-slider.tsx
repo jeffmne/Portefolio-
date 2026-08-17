@@ -86,6 +86,7 @@ export function ProjectSlider({ projects }: ProjectSliderProps) {
                 <p className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[11px] uppercase tracking-[0.18em] text-white/75">
                   <Building2 className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                   {project.organisation ?? 'Projet personnel'}
+                  {project.group ? <span className="text-white/55">· {project.group}</span> : null}
                   {project.context ? (
                     <span className="text-white/55">· {project.context}</span>
                   ) : null}

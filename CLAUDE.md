@@ -178,7 +178,7 @@ Chaque carte a un état `hover` visible (léger lift + bordure accent).
 
 #### Cas 1 — Plateforme CMDB & Nomenclature de Parc IT
 
-- **Organisation :** KOMO Gestion Groupe — _Stage d'ingénieur Systèmes & Réseaux_ (champs `organisation` et `context`)
+- **Organisation :** KOMO Gestion Groupe, entité du **Groupe SOGAFRIC** — _Stage d'ingénieur Systèmes & Réseaux_ (champs `organisation`, `group` et `context`)
 - **Problématique :** Les noms et numéros des nouveaux postes étaient inscrits sur un tableau (effaçable, donc fragile) et les remises de matériel consignées sur un cahier de décharge distinct — deux registres manuels disjoints, d'où l'impossibilité de savoir quel poste appartenait à qui. Formulation issue du récit direct du propriétaire : ne pas la remplacer par une problématique générique.
 - **Solution :** Application web sur mesure (Laravel + MySQL) générant automatiquement la nomenclature des postes, attribuant les utilisateurs et cartographiant l'ensemble des équipements (PC, serveurs, switchs, firewalls, AP, imprimantes).
 - **Infrastructure :** NAS Synology, Reverse Proxy Nginx, SSL/TLS, MySQL.
@@ -196,11 +196,13 @@ Composant `ProjectCard` avec onglets accessibles (`role="tablist"`, navigation f
 Liste verticale de cartes, une par poste : intitulé, organisation, période et missions en puces.
 Les données proviennent **exclusivement du CV** (`experiences` dans `lib/data.ts`) — ne rien y ajouter qui ne figure pas dans le CV.
 
-| Poste                                  | Organisation                         | Période                               |
-| -------------------------------------- | ------------------------------------ | ------------------------------------- |
-| Stagiaire Ingénieur Systèmes & Réseaux | KOMO Gestion Groupe                  | Mars 2026 — _date de fin à compléter_ |
-| Agent Recenseur — RGPL 2025            | Direction Générale de la Statistique | Février — avril 2026                  |
-| Assistant Technique IT & Bureautique   | Cyber Café Malicko                   | Juillet — septembre 2017              |
+| Poste                                  | Organisation                         | Groupe          | Période                               |
+| -------------------------------------- | ------------------------------------ | --------------- | ------------------------------------- |
+| Stagiaire Ingénieur Systèmes & Réseaux | KOMO Gestion Groupe                  | Groupe SOGAFRIC | Mars 2026 — _date de fin à compléter_ |
+| Agent Recenseur — RGPL 2025            | Direction Générale de la Statistique | —               | Février — avril 2026                  |
+| Assistant Technique IT & Bureautique   | Cyber Café Malicko                   | —               | Juillet — septembre 2017              |
+
+Le champ `group` (optionnel, sur `Experience` comme sur `Project`) porte le rattachement d'une structure à un groupe. Il s'affiche après l'organisation, séparé par un point médian et en `text-muted-foreground`, pour rester une précision et non une seconde ligne d'égale importance.
 
 > Le CV porte encore le gabarit `05/20XX` comme date de fin du stage KOMO : seule la date de début est affichée tant que la période n'est pas confirmée.
 

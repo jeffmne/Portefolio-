@@ -30,7 +30,15 @@ export function Experience() {
                           <h3 className="text-base font-semibold text-foreground">
                             {experience.role}
                           </h3>
-                          <p className="mt-0.5 text-sm text-primary">{experience.organisation}</p>
+                          <p className="mt-0.5 text-sm text-primary">
+                            {experience.organisation}
+                            {experience.group ? (
+                              <span className="text-muted-foreground">
+                                {' · '}
+                                {experience.group}
+                              </span>
+                            ) : null}
+                          </p>
                         </div>
                       </div>
 
