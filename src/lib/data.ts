@@ -437,10 +437,10 @@ export const valuePropositions: ValueProposition[] = [
 
 /**
  * Profils externes.
- * TODO : remplacer par les URLs définitives avant la mise en production.
+ * TODO : confirmer l'URL GitHub — déduite du propriétaire du dépôt.
  */
 export const socialLinks = {
-  linkedin: 'https://www.linkedin.com/in/menie-milama-rod',
+  linkedin: 'https://www.linkedin.com/in/rod-menie-milama-9a0b00268',
   github: 'https://github.com/jeffmne',
 } as const;
 
