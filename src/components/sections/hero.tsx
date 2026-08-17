@@ -25,7 +25,7 @@ export function Hero() {
             className="pointer-events-none absolute -right-[12%] -top-[26%] z-0 aspect-[1.2] w-[48%] rounded-[44%_56%_52%_48%/48%_44%_56%_52%] bg-gradient-to-br from-peach to-block-rose opacity-60 blur-[6px] motion-safe:animate-drift-slow"
           />
 
-          <div className="relative z-10 grid items-center gap-10 lg:grid-cols-12 lg:items-end lg:gap-14">
+          <div className="relative z-10 grid items-center gap-6 sm:gap-8 lg:grid-cols-12 lg:items-end lg:gap-14">
             <div className="lg:col-span-7">
               <p
                 className="inline-flex max-w-full items-center gap-2 rounded-full bg-white/15 px-3.5 py-1.5 font-mono text-[11px] backdrop-blur-sm motion-safe:animate-fade-in-up sm:text-xs"
@@ -117,20 +117,25 @@ export function Hero() {
               </p>
             </div>
 
+            {/**
+             * Incrustation. En dessous de lg le portrait est entièrement
+             * visible, dimensionné par sa hauteur. À partir de lg il repose
+             * sur le bord inférieur du bloc (marge négative compensant le
+             * rembourrage), ce qui lui donne du relief.
+             */}
             <div
               className="motion-safe:animate-fade-in-up lg:col-span-5 lg:-mb-20"
               style={{ animationDelay: `${STEP * 2.6}ms` }}
             >
-              {/* Incrustation : le portrait détouré se détache d'un disque
-                  d'accent et déborde par le haut, ce qui lui donne du relief. */}
-              <div className="relative mx-auto flex w-full max-w-[17rem] items-end justify-center sm:max-w-xs lg:ml-auto lg:mr-0 lg:max-w-md">
+              <div className="relative mx-auto flex w-fit items-end justify-center lg:ml-auto lg:mr-0 lg:w-full">
+                {/* Disque centré sur le buste, décalé à 43 % comme la silhouette. */}
                 <span
                   aria-hidden="true"
-                  className="absolute bottom-[12%] left-1/2 aspect-square w-[86%] -translate-x-1/2 rounded-full bg-gradient-to-br from-white/25 to-white/5 backdrop-blur-[1px]"
+                  className="absolute bottom-[8%] left-[43%] aspect-square w-[135%] -translate-x-1/2 rounded-full bg-gradient-to-br from-white/25 to-white/5 backdrop-blur-[1px] lg:w-[92%]"
                 />
                 <span
                   aria-hidden="true"
-                  className="absolute bottom-[18%] left-1/2 aspect-square w-[72%] -translate-x-1/2 rounded-full border border-white/25"
+                  className="absolute bottom-[14%] left-[43%] aspect-square w-[112%] -translate-x-1/2 rounded-full border border-white/25 lg:w-[76%]"
                 />
                 <Image
                   src={hero.portrait.src}
@@ -138,8 +143,10 @@ export function Hero() {
                   width={hero.portrait.width}
                   height={hero.portrait.height}
                   priority
-                  sizes="(max-width: 640px) 272px, (max-width: 1024px) 320px, 384px"
-                  className="relative w-full drop-shadow-[0_26px_40px_rgba(0,0,0,0.4)]"
+                  sizes="(max-width: 1024px) 260px, 420px"
+                  /* En dessous de lg, un fondu dissout la coupe nette du
+                     cadrage d'origine ; au-delà, le bord du bloc s'en charge. */
+                  className="relative h-[19rem] w-auto drop-shadow-[0_26px_40px_rgba(0,0,0,0.4)] [-webkit-mask-image:linear-gradient(to_bottom,#000_84%,transparent_99%)] [mask-image:linear-gradient(to_bottom,#000_84%,transparent_99%)] sm:h-[23rem] lg:h-auto lg:w-full lg:[-webkit-mask-image:none] lg:[mask-image:none]"
                 />
               </div>
             </div>

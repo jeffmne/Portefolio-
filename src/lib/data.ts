@@ -156,6 +156,7 @@ export const hero = {
     'Active Directory',
     'Laravel',
     'VMware',
+    'Azure',
     'Nmap',
     'Cisco',
     'Next.js',
@@ -169,8 +170,8 @@ export const hero = {
   portrait: {
     src: '/images/menie-milama-rod-cutout.webp',
     alt: 'Portrait de MENIE MILAMA Rod, ingénieur systèmes, réseaux et sécurité',
-    width: 900,
-    height: 1032,
+    width: 760,
+    height: 1390,
   },
 } as const;
 
@@ -364,6 +365,7 @@ export const skillCategories: SkillCategory[] = [
       'Linux',
       'VMware',
       'Hyper-V',
+      'Microsoft Azure',
       'Synology DSM',
     ],
   },
