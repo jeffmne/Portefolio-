@@ -1,109 +1,60 @@
-/**
- * Typage explicite de la progression de défilement. Sans `@property`, une
- * variable sans unité placée dans un `calc()` à l'intérieur d'un `transform`
- * est mal résolue par certaines versions de Safari — la scène reste alors
- * figée alors que le script fonctionne.
- */
-@property --p {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 0;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  /* Light Mode */
-  :root {
-    --background: 250 27% 95%;
-    --foreground: 197 86% 14%;
+  :root,
+  .dark {
+    --background: 60 5% 92%;
+    --foreground: 0 0% 8%;
     --card: 0 0% 100%;
-    --card-foreground: 197 86% 14%;
+    --card-foreground: 0 0% 8%;
     --popover: 0 0% 100%;
-    --popover-foreground: 197 86% 14%;
-    --primary: 221 83% 54%;
+    --popover-foreground: 0 0% 8%;
+    --primary: 16 66% 54%;
     --primary-foreground: 0 0% 100%;
-    --primary-deep: 224 71% 36%;
-    --secondary: 250 22% 91%;
-    --secondary-foreground: 197 86% 14%;
-    --muted: 250 22% 91%;
-    --muted-foreground: 200 16% 42%;
-    --accent: 344 66% 63%;
+    --primary-deep: 12 61% 43%;
+    --secondary: 60 5% 96%;
+    --secondary-foreground: 0 0% 8%;
+    --muted: 60 5% 96%;
+    --muted-foreground: 0 0% 42%;
+    --accent: 16 66% 54%;
     --accent-foreground: 0 0% 100%;
-    --peach: 30 82% 68%;
+    --peach: 16 66% 54%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
-    --border: 252 21% 88%;
-    --input: 252 21% 88%;
-    --ring: 221 83% 54%;
-    --radius: 1.75rem;
-
-    /**
-     * Aplats de marque. Contrairement à --primary / --accent, qui s'adaptent au
-     * thème pour rester lisibles en petit, ces fonds restent assez profonds
-     * dans les deux thèmes pour porter du texte blanc.
-     */
-    --block-blue: 221 83% 54%;
-    --block-rose: 344 60% 58%;
-    --block-ink: 197 86% 14%;
+    --border: 60 4% 91%;
+    --input: 60 4% 86%;
+    --ring: 16 66% 54%;
+    --radius: 1rem;
+    --block-blue: 0 0% 8%;
+    --block-rose: 16 66% 54%;
+    --block-ink: 240 3% 6%;
     --on-block: 0 0% 100%;
   }
 
-  /* Dark Mode */
-  .dark {
-    --background: 197 68% 8%;
-    --foreground: 197 30% 92%;
-    --card: 199 58% 13%;
-    --card-foreground: 197 30% 92%;
-    --popover: 199 58% 13%;
-    --popover-foreground: 197 30% 92%;
-    --primary: 219 87% 66%;
-    --primary-foreground: 199 70% 10%;
-    --primary-deep: 222 71% 56%;
-    --secondary: 199 47% 18%;
-    --secondary-foreground: 197 30% 92%;
-    --muted: 199 47% 18%;
-    --muted-foreground: 200 15% 64%;
-    --accent: 340 68% 70%;
-    --accent-foreground: 199 70% 10%;
-    --peach: 28 68% 66%;
-    --destructive: 0 72% 55%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 200 47% 20%;
-    --input: 200 47% 20%;
-    --ring: 219 87% 66%;
-
-    /* Légèrement assombris pour que le blanc tienne sur fond sombre. */
-    --block-blue: 224 74% 46%;
-    --block-rose: 344 52% 48%;
-    --block-ink: 199 62% 11%;
-    --on-block: 0 0% 100%;
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings:
-      'rlig' 1,
-      'calt' 1;
-    transition:
-      background-color 300ms ease,
-      color 300ms ease;
-  }
-
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 2rem;
   }
 
-  /* Respect strict de la preference systeme. */
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  main > section:not(#top) {
+    background: #fff;
+  }
+
+  ::selection {
+    background: rgb(217 101 59 / 0.28);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -117,78 +68,118 @@
       transition-duration: 0.01ms !important;
     }
   }
-
-  ::selection {
-    @apply bg-accent/30;
-  }
 }
 
 @layer components {
-  /**
-   * Mot mis en valeur : serif italique souligne d'un trait qui se trace.
-   * Le trait n'apparait qu'une fois l'element revele (classe `.is-drawn`).
-   */
-  .accent-word {
-    position: relative;
-    display: inline-block;
-    white-space: nowrap;
-    padding-inline: 0.06em;
-    font-family: var(--font-instrument-serif), Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
+  .hero-frame {
+    box-shadow:
+      0 0 0 10px rgb(255 255 255 / 0.38),
+      0 30px 80px -20px rgb(0 0 0 / 0.26);
   }
 
-  .accent-word::after {
+  .hero-name {
+    font-size: clamp(4rem, 13.2vw, 12.5rem);
+  }
+
+  .hero-name-outline {
+    color: transparent;
+    -webkit-text-stroke: 2px #151515;
+  }
+
+  .portrait-glow {
+    background: radial-gradient(circle, rgb(217 101 59 / 0.38), transparent 62%);
+  }
+
+  .status-pill,
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    border: 1px solid #e8e8e6;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow:
+      inset 0 1px rgb(255 255 255 / 0.9),
+      0 8px 24px -12px rgb(0 0 0 / 0.18);
+  }
+
+  .status-pill {
+    padding: 0.55rem 0.85rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+
+  .btn-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    border-radius: 999px;
+    background: #151515;
+    color: #fff;
+    box-shadow:
+      0 0 0 4px rgb(0 0 0 / 0.08),
+      0 12px 30px -12px rgb(0 0 0 / 0.6),
+      inset 0 1px rgb(255 255 255 / 0.15);
+    transition: transform 300ms ease, box-shadow 300ms ease;
+  }
+
+  .btn-dark:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 0 4px rgb(217 101 59 / 0.14),
+      0 18px 34px -14px rgb(0 0 0 / 0.62);
+  }
+
+  .nav-line::after {
     content: '';
     position: absolute;
-    left: -0.04em;
-    right: -0.1em;
-    bottom: 0.02em;
-    height: 0.075em;
-    border-radius: 999px;
-    background-color: currentColor;
-    transform: rotate(-0.8deg) scaleX(0);
-    transform-origin: left center;
-    transition: transform 700ms cubic-bezier(0.22, 0.68, 0.24, 1) 350ms;
+    right: 0;
+    bottom: -0.3rem;
+    left: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .accent-word.is-drawn::after {
-    transform: rotate(-0.8deg) scaleX(1);
+  .nav-line:hover::after,
+  .nav-line:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .accent-word {
+    color: hsl(var(--primary));
+    font-family: var(--font-poppins), sans-serif;
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .section-kicker {
+    font-family: var(--font-jetbrains-mono), monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: hsl(var(--primary));
+  }
+
+  .section-title {
+    font-family: var(--font-poppins), var(--font-manrope), sans-serif;
+    font-size: clamp(2.4rem, 6.5vw, 5.5rem);
+    font-weight: 600;
+    line-height: 0.94;
+    letter-spacing: -0.055em;
+    text-transform: uppercase;
   }
 }
 
 @layer utilities {
-  /* Le grain : c'est lui qui donne sa matiere aux aplats colores. */
-  .grain::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.38;
-    mix-blend-mode: soft-light;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  /**
-   * Cascade interne d'un bloc revele. Chaque enfant marque `data-reveal-item`
-   * entre a son tour une fois le bloc parent passe a `data-revealed`, decale
-   * par son index `--i` et le pas `--stagger` fixe par la liste.
-   *
-   * Une animation, et non une transition : la propriete `transition` reste
-   * ainsi disponible pour l'element lui-meme. Une regle de transition posee
-   * ici ecraserait le `transition-colors` des lignes de service, dont le
-   * survol deviendrait instantane.
-   *
-   * L'etat masque est conditionne a `prefers-reduced-motion: no-preference`,
-   * comme la variante `motion-safe` du bloc parent : sans cette garde, un
-   * visiteur ayant reduit les animations verrait des enfants restes a
-   * `opacity: 0`, la neutralisation globale ne portant que sur les durees.
-   */
   @keyframes reveal-item {
     from {
       opacity: 0;
-      transform: translateY(6px);
+      transform: translateY(8px);
     }
     to {
       opacity: 1;
@@ -202,32 +193,19 @@
     }
 
     [data-reveal][data-revealed] [data-reveal-item] {
-      animation: reveal-item 400ms ease-out both;
+      animation: reveal-item 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
       animation-delay: calc(var(--i, 0) * var(--stagger, 55ms));
     }
-  }
-
-  /* Revelation par masque : la ligne monte derriere son propre cache. */
-  .mask-line {
-    display: block;
-    overflow: hidden;
-  }
-
-  .bg-grid-pattern {
-    background-image:
-      linear-gradient(to right, hsl(var(--foreground) / 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--foreground) / 0.05) 1px, transparent 1px);
-    background-size: 56px 56px;
   }
 
   .link-underline::after {
     content: '';
     position: absolute;
-    left: 0.75rem;
     right: 0.75rem;
     bottom: 0.3rem;
+    left: 0.75rem;
     height: 1px;
-    background-color: hsl(var(--primary));
+    background: hsl(var(--primary));
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 300ms ease-out;
@@ -237,4 +215,13 @@
   .link-underline:focus-visible::after {
     transform: scaleX(1);
   }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
 }
+
