@@ -16,13 +16,13 @@ export function ServiceCard({ service }: ServiceCardProps) {
   const Icon = service.icon;
 
   return (
-    <div className="group relative flex items-start gap-4 overflow-hidden border-b border-border px-2 py-6 transition-[padding,color] delay-0 duration-500 ease-smooth hover:px-5 hover:text-primary-foreground hover:delay-150 sm:py-8">
+    <div className="group relative flex items-start gap-5 overflow-hidden border-b border-[#151515]/15 px-2 py-7 transition-[padding,color] delay-0 duration-500 ease-smooth hover:px-5 hover:text-primary-foreground hover:delay-150 sm:py-9">
       <span
         aria-hidden="true"
-        className="absolute inset-0 z-0 translate-y-full bg-primary transition-transform delay-0 duration-500 ease-smooth group-hover-fine:translate-y-0 group-hover-fine:delay-150"
+        className="absolute inset-0 z-0 translate-y-full bg-accent transition-transform delay-0 duration-500 ease-smooth group-hover-fine:translate-y-0 group-hover-fine:delay-150"
       />
 
-      <span className="relative z-10 mt-0.5 shrink-0 text-primary transition-colors delay-0 duration-500 ease-smooth group-hover-fine:text-primary-foreground group-hover-fine:delay-150">
+      <span className="relative z-10 mt-1 grid size-11 shrink-0 place-items-center rounded-full border border-[#151515]/15 text-accent transition-colors delay-0 duration-500 ease-smooth group-hover-fine:border-white/30 group-hover-fine:text-white group-hover-fine:delay-150">
         <Icon className="h-5 w-5" aria-hidden="true" />
       </span>
 
@@ -32,7 +32,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
         <h3
           data-reveal-item=""
           style={{ '--i': 0 } as React.CSSProperties}
-          className="text-lg font-bold tracking-tight sm:text-xl"
+          className="text-xl font-bold uppercase tracking-[-0.03em] sm:text-2xl"
         >
           {service.title}
         </h3>
@@ -54,3 +54,4 @@ export function ServiceCard({ service }: ServiceCardProps) {
     </div>
   );
 }
+
