@@ -1,15 +1,14 @@
 import type { Metadata, Viewport } from 'next';
-import { Instrument_Serif, Inter, JetBrains_Mono } from 'next/font/google';
+import { JetBrains_Mono, Manrope, Poppins } from 'next/font/google';
 
 import { Footer } from '@/components/layout/footer';
-import { Header } from '@/components/layout/header';
 import { ThemeProvider } from '@/components/theme-provider';
 import { siteConfig } from '@/lib/data';
 import './globals.css';
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-manrope',
   display: 'swap',
 });
 
@@ -19,12 +18,10 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 });
 
-/** Réservée aux mots mis en valeur (`.accent-word`). */
-const instrumentSerif = Instrument_Serif({
+const poppins = Poppins({
   subsets: ['latin'],
-  weight: '400',
-  style: 'italic',
-  variable: '--font-instrument-serif',
+  weight: ['600', '700'],
+  variable: '--font-poppins',
   display: 'swap',
 });
 
@@ -62,8 +59,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#fafafa' },
-    { media: '(prefers-color-scheme: dark)', color: '#09090b' },
+    { media: '(prefers-color-scheme: light)', color: '#ececea' },
+    { media: '(prefers-color-scheme: dark)', color: '#ececea' },
   ],
 };
 
@@ -76,7 +73,7 @@ export default function RootLayout({
     <html
       lang="fr"
       suppressHydrationWarning
-      className={`${inter.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable}`}
+      className={`${manrope.variable} ${poppins.variable} ${jetbrainsMono.variable}`}
     >
       <body className="min-h-screen font-sans">
         {/* Sans JavaScript, l'observateur d'intersection ne s'execute pas :
@@ -89,14 +86,13 @@ export default function RootLayout({
             }}
           />
         </noscript>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light" enableSystem={false}>
           <a
             href="#contenu"
             className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:text-primary-foreground"
           >
             Aller au contenu principal
           </a>
-          <Header />
           <main id="contenu">{children}</main>
           <Footer />
         </ThemeProvider>
@@ -104,3 +100,4 @@ export default function RootLayout({
     </html>
   );
 }
+
