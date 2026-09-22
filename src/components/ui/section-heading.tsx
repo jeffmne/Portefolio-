@@ -24,11 +24,9 @@ export function SectionHeading({
   const parts = accent && title.includes(accent) ? title.split(accent) : null;
 
   return (
-    <Reveal className={cn('max-w-2xl space-y-4', className)}>
-      <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent sm:text-xs">
-        {eyebrow}
-      </p>
-      <h2 className="text-[clamp(1.6rem,3.8vw,2.35rem)] font-extrabold leading-[1.12] tracking-[-0.02em] text-foreground">
+    <Reveal className={cn('max-w-5xl space-y-5', className)}>
+      <p className="section-kicker">/{eyebrow}</p>
+      <h2 className="section-title text-foreground">
         {parts ? (
           <>
             {parts[0]}
@@ -40,10 +38,11 @@ export function SectionHeading({
         )}
       </h2>
       {description ? (
-        <p className="text-[clamp(0.95rem,1.6vw,1.05rem)] leading-relaxed text-muted-foreground">
+        <p className="max-w-2xl text-[clamp(0.95rem,1.6vw,1.08rem)] leading-relaxed text-muted-foreground">
           {description}
         </p>
       ) : null}
     </Reveal>
   );
 }
+
