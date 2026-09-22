@@ -75,9 +75,10 @@ const config: Config = {
         sm: 'calc(var(--radius) - 1.25rem)',
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-manrope)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['var(--font-poppins)', 'var(--font-manrope)', 'ui-sans-serif', 'sans-serif'],
         mono: ['var(--font-jetbrains-mono)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
-        serif: ['var(--font-instrument-serif)', 'Georgia', 'serif'],
+        serif: ['var(--font-poppins)', 'var(--font-manrope)', 'ui-sans-serif', 'sans-serif'],
       },
       transitionTimingFunction: {
         smooth: 'cubic-bezier(0.22, 0.68, 0.24, 1)',
@@ -118,6 +119,11 @@ const config: Config = {
         marquee: {
           to: { transform: 'translateX(-50%)' },
         },
+        'pulse-dot': {
+          '0%': { boxShadow: '0 0 0 0 rgb(63 181 107 / 0.55)' },
+          '70%': { boxShadow: '0 0 0 10px rgb(63 181 107 / 0)' },
+          '100%': { boxShadow: '0 0 0 0 rgb(63 181 107 / 0)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -129,6 +135,7 @@ const config: Config = {
         drift: 'drift 22s ease-in-out infinite',
         'drift-slow': 'drift 27s ease-in-out infinite reverse',
         marquee: 'marquee 30s linear infinite',
+        'pulse-dot': 'pulse-dot 2s ease-out infinite',
       },
     },
   },
@@ -150,3 +157,4 @@ const config: Config = {
 };
 
 export default config;
+
