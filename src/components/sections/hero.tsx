@@ -1,181 +1,89 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Download, MapPin } from 'lucide-react';
+import { ArrowUpRight, Download, Github, Linkedin, Mail, MapPin } from 'lucide-react';
 
-import { AccentWord } from '@/components/ui/accent-word';
-import { Button } from '@/components/ui/button';
+import { Header } from '@/components/layout/header';
+import { ColorRevealPortrait } from '@/components/ui/color-reveal-portrait';
 import { Marquee } from '@/components/ui/marquee';
-import { ScrollScene } from '@/components/ui/scroll-scene';
-import { hero, siteConfig } from '@/lib/data';
+import { contactChannels, hero, siteConfig, socialLinks } from '@/lib/data';
 
-/** Cascade d'apparition au chargement, en millisecondes. */
-const STEP = 110;
+const email = contactChannels.find((channel) => channel.id === 'email')?.href ?? '#contact';
+
+const socials = [
+  { label: 'LinkedIn', href: socialLinks.linkedin, icon: Linkedin },
+  { label: 'GitHub', href: socialLinks.github, icon: Github },
+  { label: 'Email', href: email, icon: Mail },
+] as const;
 
 export function Hero() {
   return (
-    <section id="top" className="pt-6 sm:pt-8">
-      {/* --shift neutralise, sous lg, les seuls décalages qui faisaient
-          chevaucher le portrait et le texte. L'échelle du bloc et la dérive
-          du fond, elles, jouent à toutes les tailles. */}
-      <ScrollScene className="container [--shift:0] lg:[--shift:1]">
-        {/* Le bloc recule et s'efface a mesure qu'on defile : c'est lui qui
-            donne la profondeur, les couches internes se decalent dessus. */}
-        <div
-          className="grain relative overflow-hidden rounded-lg bg-block-blue px-6 py-14 text-on-block shadow-2xl shadow-block-blue/25 will-change-transform sm:px-10 sm:py-16 lg:px-14 lg:py-20"
-          style={{
-            transformOrigin: 'top center',
-            transform: 'scale(calc(1 - var(--p) * 0.06)) translateY(calc(var(--p) * 18px))',
-            opacity: 'calc(1 - var(--p) * 0.28)',
-          }}
-        >
-          {/* Aplat décoratif : il porte désormais les formes, les blobs CSS
-              n'ont plus lieu d'être. Il dérive plus lentement que le contenu. */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 z-0"
-            style={{
-              transform: 'translateY(calc(var(--p) * 56px)) scale(calc(1 + var(--p) * 0.06))',
-            }}
-          >
-            <Image
-              src={hero.background.src}
-              alt=""
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover"
-            />
-          </div>
+    <section id="top" className="px-3 pt-3 md:px-6 md:pt-6">
+      <div className="hero-frame relative mx-auto flex min-h-[calc(100svh-24px)] max-w-[1440px] flex-col overflow-hidden rounded-[18px] bg-white md:min-h-[calc(100svh-48px)]">
+        <Header />
 
-          <div className="relative z-10 grid items-center gap-6 sm:gap-8 lg:grid-cols-12 lg:items-end lg:gap-14">
-            <div
-              className="lg:col-span-7"
-              style={{ transform: 'translateY(calc(var(--p) * var(--shift) * -26px))' }}
-            >
-              <p
-                className="inline-flex max-w-full items-center gap-2 rounded-full bg-white/15 px-3.5 py-1.5 font-mono text-[11px] backdrop-blur-sm motion-safe:animate-fade-in-up sm:text-xs"
-                style={{ animationDelay: `${STEP}ms` }}
-              >
-                <span className="relative flex h-2 w-2 shrink-0">
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-white motion-safe:animate-pulse-ring" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
-                </span>
-                {hero.eyebrow}
-              </p>
+        <h1 className="hero-name relative z-0 mt-12 select-none whitespace-nowrap text-center font-display font-bold uppercase leading-[0.82] tracking-[0.01em] md:mt-16">
+          <span className="hero-name-outline">MENIE</span>
+          <span className="inline-block w-[0.18em]" />
+          <span>ROD</span>
+        </h1>
 
-              <p
-                className="mt-7 text-lg font-semibold motion-safe:animate-fade-in-up sm:text-xl"
-                style={{ animationDelay: `${STEP * 1.4}ms` }}
-              >
-                {hero.greeting}
-              </p>
+        <div className="absolute bottom-0 left-1/2 z-10 h-[70%] w-[min(92vw,560px)] -translate-x-1/2 md:h-[74%] lg:h-[78%]">
+          <ColorRevealPortrait
+            src={hero.portrait.src}
+            alt={hero.portrait.alt}
+            width={hero.portrait.width}
+            height={hero.portrait.height}
+            className="h-full w-full"
+          />
+        </div>
 
-              <h1 className="mt-1 text-[clamp(2.1rem,5.6vw,3.9rem)] font-extrabold leading-[1.03] tracking-[-0.03em]">
-                {hero.headingLines.map((line, index) => (
-                  <span key={line} className="mask-line">
-                    <span
-                      className="block motion-safe:animate-rise-line"
-                      style={{ animationDelay: `${STEP * (2 + index * 0.55)}ms` }}
-                    >
-                      {line}
-                    </span>
-                  </span>
-                ))}
-                <span className="mask-line">
-                  <span
-                    className="block motion-safe:animate-rise-line"
-                    style={{ animationDelay: `${STEP * 3.1}ms` }}
-                  >
-                    <AccentWord delay={700}>{hero.headingAccent}</AccentWord>
-                  </span>
-                </span>
-              </h1>
-
-              <p
-                className="mt-6 max-w-[30ch] text-lg font-semibold text-white/90 motion-safe:animate-fade-in-up sm:text-xl"
-                style={{ animationDelay: `${STEP * 4}ms` }}
-              >
-                {hero.subheading}
-              </p>
-
-              <p
-                className="mt-4 max-w-[46ch] leading-relaxed text-white/80 motion-safe:animate-fade-in-up"
-                style={{ animationDelay: `${STEP * 4.6}ms` }}
-              >
-                {hero.paragraph}
-              </p>
-
-              <div
-                className="mt-9 flex flex-col gap-3 motion-safe:animate-fade-in-up sm:flex-row"
-                style={{ animationDelay: `${STEP * 5.2}ms` }}
-              >
-                <Button asChild size="lg" variant="cream" className="group">
-                  <Link href={hero.primaryCta.href}>
-                    {hero.primaryCta.label}
-                    <ArrowRight
-                      className="h-4 w-4 transition-transform duration-300 ease-smooth group-hover:translate-x-1"
-                      aria-hidden="true"
-                    />
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  className="group bg-white/15 text-white backdrop-blur-sm hover:bg-white/25 hover:shadow-none"
-                >
-                  <a href={hero.secondaryCta.href} download>
-                    <Download
-                      className="h-4 w-4 transition-transform duration-300 ease-smooth group-hover:translate-y-0.5"
-                      aria-hidden="true"
-                    />
-                    {hero.secondaryCta.label}
-                  </a>
-                </Button>
-              </div>
-
-              <p
-                className="mt-7 flex items-center justify-center gap-2 text-sm text-white/75 motion-safe:animate-fade-in-up"
-                style={{ animationDelay: `${STEP * 5.8}ms` }}
-              >
-                <MapPin className="h-4 w-4 shrink-0" aria-hidden="true" />
-                {hero.location}
-              </p>
-            </div>
-
-            {/**
-             * Incrustation. En dessous de lg le portrait est entièrement
-             * visible, dimensionné par sa hauteur. À partir de lg il repose
-             * sur le bord inférieur du bloc (marge négative compensant le
-             * rembourrage), ce qui lui donne du relief.
-             */}
-            <div
-              className="motion-safe:animate-fade-in-up lg:col-span-5 lg:-mb-20"
-              style={{
-                animationDelay: `${STEP * 2.6}ms`,
-                transform: 'translateY(calc(var(--p) * var(--shift) * -54px))',
-              }}
-            >
-              <div className="relative mx-auto flex w-fit items-end justify-center lg:ml-auto lg:mr-0 lg:w-full">
-                <Image
-                  src={hero.portrait.src}
-                  alt={hero.portrait.alt}
-                  width={hero.portrait.width}
-                  height={hero.portrait.height}
-                  priority
-                  sizes="(max-width: 1024px) 260px, 420px"
-                  /* En dessous de lg, un fondu dissout la coupe nette du
-                     cadrage d'origine ; au-delà, le bord du bloc s'en charge. */
-                  className="relative h-[19rem] w-auto drop-shadow-[0_26px_40px_rgba(0,0,0,0.4)] [-webkit-mask-image:linear-gradient(to_bottom,#000_84%,transparent_99%)] [mask-image:linear-gradient(to_bottom,#000_84%,transparent_99%)] sm:h-[23rem] lg:h-auto lg:w-full lg:[-webkit-mask-image:none] lg:[mask-image:none]"
-                />
-              </div>
-            </div>
+        <div className="relative z-20 mt-auto bg-[linear-gradient(to_top,white_58%,transparent)] px-6 pb-8 pt-32 md:absolute md:bottom-12 md:left-10 md:max-w-md md:bg-none md:px-0 md:pb-0 md:pt-0 lg:bottom-16 lg:left-20">
+          <p className="mb-3 hidden font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground md:block">
+            <MapPin className="mr-2 inline h-3.5 w-3.5" aria-hidden="true" />
+            {hero.location}
+          </p>
+          <h2 className="text-[clamp(1.75rem,3vw,2.5rem)] font-bold leading-tight tracking-[-0.035em]">
+            {hero.heading}
+          </h2>
+          <p className="mt-3 max-w-[28rem] text-[15px] leading-relaxed text-muted-foreground max-md:hidden">
+            {hero.paragraph}
+          </p>
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <Link href="#contact" className="btn-dark group px-6 py-3 text-sm font-semibold">
+              Collaborons
+              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+            </Link>
+            <a href={hero.secondaryCta.href} download className="pill px-4 py-3 text-sm font-semibold">
+              <Download className="h-4 w-4" aria-hidden="true" />
+              CV
+            </a>
           </div>
         </div>
 
-        <Marquee items={hero.marquee} className="mt-10 border-x-0" />
-      </ScrollScene>
+        <div className="absolute bottom-12 right-10 z-20 hidden flex-col items-end gap-3 md:flex lg:bottom-16 lg:right-20">
+          {socials.map((social) => {
+            const Icon = social.icon;
+            return (
+              <a
+                key={social.label}
+                href={social.href}
+                target={social.href.startsWith('http') ? '_blank' : undefined}
+                rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="pill group px-4 py-2.5 text-sm font-semibold transition-colors hover:border-[#151515] hover:bg-[#151515] hover:text-white"
+              >
+                <Icon className="h-4 w-4 transition-transform duration-500 group-hover:-rotate-12 group-hover:scale-110" aria-hidden="true" />
+                {social.label}
+              </a>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-[1440px] bg-white px-3 pb-3 pt-8 md:px-0 md:pb-0">
+        <Marquee items={hero.marquee} className="border-x-0 border-y border-[#e8e8e6] bg-white" />
+      </div>
 
       <span className="sr-only">{siteConfig.description}</span>
     </section>
   );
 }
+
