@@ -7,11 +7,12 @@ import { certifications, timeline, valuePropositions } from '@/lib/data';
 
 export function Education() {
   return (
-    <section id="formation" className="border-b border-border py-16 sm:py-20 lg:py-24">
-      <div className="container">
+    <section id="formation" className="py-20 md:py-28">
+      <div className="container max-w-[1280px]">
         <SectionHeading
           eyebrow="Formation & certifications"
           title="Un parcours d'ingénieur, complété en continu"
+          accent="en continu"
           description="Une formation scientifique exigeante, prolongée par des certifications ciblées sur l'administration système, la sécurité offensive et l'ingénierie assistée par IA."
         />
 
@@ -97,3 +98,4 @@ export function Education() {
     </section>
   );
 }
+
